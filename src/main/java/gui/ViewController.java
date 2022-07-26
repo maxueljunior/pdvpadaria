@@ -29,7 +29,7 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemEstoque() {
-		System.out.println("estoque");
+		loadView("/gui/EstoqueList.fxml");
 	}
 	
 	@FXML
