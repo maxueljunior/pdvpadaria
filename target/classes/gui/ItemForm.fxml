@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="240.0" prefWidth="698.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<AnchorPane prefHeight="240.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ItemFormController">
    <children>
       <GridPane layoutX="28.0" layoutY="35.0" prefHeight="220.0" prefWidth="560.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -30,18 +29,18 @@
             <Label text="Nome Produto" GridPane.rowIndex="1" />
             <Label text="Quantidade" GridPane.rowIndex="2" />
             <Label text="Preço" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Label" textFill="#e41212" GridPane.columnIndex="2" />
-            <Label text="Label" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label text="Label" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="Label" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="txtId" GridPane.columnIndex="1" />
+            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPreco" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lbErrorId" textFill="#e41212" GridPane.columnIndex="2" />
+            <Label fx:id="lbErrorName" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="lbErrorQuantidade" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="lbErrorPreco" textFill="#e41212" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false" text="Salvar" />
-                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" text="Salvar" />
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onBtnCancelAction" text="Cancelar" />
                </children>
             </HBox>
          </children>
