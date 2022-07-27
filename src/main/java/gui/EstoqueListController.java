@@ -52,7 +52,9 @@ public class EstoqueListController implements Initializable{
 	
 	public void onBtnSalvarAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/ItemForm.fxml", parentStage);
+		Item obj = new Item();
+		
+		createDialogForm(obj, "/gui/ItemForm.fxml", parentStage);
 	}
 	
 	public void setService(ItemService service) {
@@ -81,10 +83,14 @@ public class EstoqueListController implements Initializable{
 		tableViewItem.setItems(obsList);
 	}
 	
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Item obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			ItemFormController controller = loader.getController();
+			controller.setItem(obj);
+			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Item no Estoque");

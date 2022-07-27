@@ -9,9 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import pdv.model.entities.Item;
 
 public class ItemFormController implements Initializable {
-
+	
+	private Item entity;
+	
 	@FXML
 	private TextField txtId;
 
@@ -62,6 +65,20 @@ public class ItemFormController implements Initializable {
 		Constraints.setTextFieldInteger(txtId);
 		Constraints.setTextFieldInteger(txtQuantidade);
 		Constraints.setTextFieldDouble(txtPreco);
+	}
+
+	public void setItem(Item entity) {
+		this.entity = entity;
+	}
+	
+	public void updateFormData() {
+		if(entity==null) {
+			throw new IllegalStateException("entidade está nula");
+		}
+		txtId.setText(String.valueOf(entity.getId()));
+		txtName.setText(entity.getName());
+		txtQuantidade.setText(String.valueOf(entity.getQuantidade()));
+		txtPreco.setText(String.valueOf(entity.getPreco()));
 	}
 	
 }
