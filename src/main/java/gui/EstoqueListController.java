@@ -91,6 +91,7 @@ public class EstoqueListController implements Initializable{
 			ItemFormController controller = loader.getController();
 			controller.setItem(obj);
 			controller.updateFormData();
+			controller.setItemService(new ItemService());
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Item no Estoque");

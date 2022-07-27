@@ -21,4 +21,19 @@ public class ItemService {
 		return list;
 	}
 	
+	public void saveOrUpdate(Item obj) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		if(obj.getId() == null) {
+			em.persist(obj);
+		}
+		else {
+			em.merge(obj);
+		}
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+	}
+	
 }
