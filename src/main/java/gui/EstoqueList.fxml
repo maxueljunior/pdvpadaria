@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="431.0" prefWidth="716.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<VBox prefHeight="431.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EstoqueListController">
    <children>
       <Label text="Estoque">
          <font>
@@ -22,15 +21,15 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Novo" />
+          <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewItem" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Codigo" />
-          <TableColumn prefWidth="110.0" text="Nome Produto" />
-            <TableColumn prefWidth="75.0" text="Preço" />
-            <TableColumn prefWidth="75.0" text="Quantidade" />
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Codigo" />
+          <TableColumn fx:id="tableColumnName" prefWidth="110.0" text="Nome Produto" />
+            <TableColumn fx:id="tableColumnPreco" prefWidth="75.0" text="Preço" />
+            <TableColumn fx:id="tableColumnQuantidade" prefWidth="75.0" text="Quantidade" />
         </columns>
       </TableView>
    </children>

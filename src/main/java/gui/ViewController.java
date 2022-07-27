@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import pdv.application.Program;
+import pdv.model.services.ItemService;
 
 public class ViewController implements Initializable{
 	
@@ -29,7 +31,10 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemEstoque() {
-		loadView("/gui/EstoqueList.fxml");
+		loadView("/gui/EstoqueList.fxml", (EstoqueListController controller) -> {
+			controller.setService(new ItemService());
+			controller.updateTableView();
+		});
 	}
 	
 	@FXML
@@ -39,10 +44,10 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemAbout() {
-		loadView("/gui/About.fxml");
+		loadView("/gui/About.fxml", x -> {});
 	}
 	
-	private synchronized void loadView(String absoluteName) {
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initAction) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVbox = loader.load();
@@ -55,11 +60,14 @@ public class ViewController implements Initializable{
 			mainVbox.getChildren().add(mainMenu);
 			mainVbox.getChildren().addAll(newVbox.getChildren());
 			
+			T controller = loader.getController();
+			initAction.accept(controller);
+			
 		} catch (IOException e) {
 			Alerts.showAlert("IOException", "Erro ao carregar a pagina", e.getMessage(), AlertType.ERROR);
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL uri, ResourceBundle rb) {
 	}

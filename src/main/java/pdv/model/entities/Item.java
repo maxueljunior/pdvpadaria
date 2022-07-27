@@ -1,4 +1,4 @@
-package pdv.entities;
+package pdv.model.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
