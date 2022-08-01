@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,74 +29,78 @@ import pdv.application.Program;
 import pdv.model.entities.Item;
 import pdv.model.services.ItemService;
 
-public class EstoqueListController implements Initializable, DataChangeListener{
-	
+public class EstoqueListController implements Initializable, DataChangeListener {
+
 	private ItemService service;
-	
+
 	@FXML
 	private TableView<Item> tableViewItem;
-	
+
 	@FXML
 	private TableColumn<Item, Integer> tableColumnId;
-	
+
 	@FXML
 	private TableColumn<Item, String> tableColumnName;
-	
+
 	@FXML
 	private TableColumn<Item, Integer> tableColumnQuantidade;
-	
+
 	@FXML
 	private TableColumn<Item, Double> tableColumnPreco;
-	
+
+	@FXML
+	private TableColumn<Item, Item> tableColumnEdit;
+
 	@FXML
 	private Button btnSalvar;
-	
+
 	private ObservableList<Item> obsList;
-	
+
 	public void onBtnSalvarAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
 		Item obj = new Item();
-		
+
 		createDialogForm(obj, "/gui/ItemForm.fxml", parentStage);
 	}
-	
+
 	public void setService(ItemService service) {
 		this.service = service;
 	}
-	
+
 	private void initializeNodes() {
-		
+
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
-		
+
 		Stage stage = (Stage) Program.getMainScene().getWindow();
 		tableViewItem.prefHeightProperty().bind(stage.heightProperty());
-		
+
 	}
-	
+
 	public void updateTableView() {
-		if(service==null) {
+		if (service == null) {
 			throw new IllegalStateException("Serviço nullo");
 		}
-		
+
 		List<Item> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewItem.setItems(obsList);
+		initEditButtons();
 	}
-	
+
 	private void createDialogForm(Item obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
-			
+
 			ItemFormController controller = loader.getController();
 			controller.setItem(obj);
 			controller.setItemService(new ItemService());
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
-			
+
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Item no Estoque");
 			dialogStage.setScene(new Scene(pane));
@@ -102,12 +108,12 @@ public class EstoqueListController implements Initializable, DataChangeListener{
 			dialogStage.initOwner(parentStage);
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.showAndWait();
-			
-		}catch(IOException e) {
+
+		} catch (IOException e) {
 			Alerts.showAlert("IOException", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
@@ -118,8 +124,23 @@ public class EstoqueListController implements Initializable, DataChangeListener{
 		updateTableView();
 	}
 
-	
+	private void initEditButtons() {
+		tableColumnEdit.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnEdit.setCellFactory(param -> new TableCell<Item, Item>() {
+			private final Button button = new Button("edit");
 
-	
-	
+			@Override
+			protected void updateItem(Item obj, boolean empty) {
+				super.updateItem(obj, empty);
+				if (obj == null) {
+					setGraphic(null);
+					return;
+				}
+				setGraphic(button);
+				button.setOnAction(
+						event -> createDialogForm(obj, "/gui/ItemForm.fxml", Utils.currentStage(event)));
+			}
+		});
+	}
+
 }
