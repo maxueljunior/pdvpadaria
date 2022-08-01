@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ import pdv.application.Program;
 import pdv.model.entities.Item;
 import pdv.model.services.ItemService;
 
-public class EstoqueListController implements Initializable{
+public class EstoqueListController implements Initializable, DataChangeListener{
 	
 	private ItemService service;
 	
@@ -90,8 +91,9 @@ public class EstoqueListController implements Initializable{
 			
 			ItemFormController controller = loader.getController();
 			controller.setItem(obj);
-			controller.updateFormData();
 			controller.setItemService(new ItemService());
+			controller.subscribeDataChangeListener(this);
+			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Cadastrar Item no Estoque");
@@ -109,6 +111,11 @@ public class EstoqueListController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
+	}
+
+	@Override
+	public void onDataChanged() {
+		updateTableView();
 	}
 
 	
