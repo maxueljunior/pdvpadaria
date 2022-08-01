@@ -36,4 +36,15 @@ public class ItemService {
 		emf.close();
 	}
 	
+	public void remove(Item obj){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Item i = em.find(Item.class, obj.getId());
+		em.remove(i);
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+	}
+	
 }
