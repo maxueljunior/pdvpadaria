@@ -14,7 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import pdv.application.Program;
 import pdv.model.services.ItemService;
 
@@ -54,6 +56,7 @@ public class ViewController implements Initializable{
 			
 			Scene mainScene = Program.getMainScene();
 			VBox mainVbox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+			
 			
 			Node mainMenu = mainVbox.getChildren().get(0);
 			mainVbox.getChildren().clear();
