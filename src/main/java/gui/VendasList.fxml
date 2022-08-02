@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="673.0" prefWidth="945.0" style="-fx-background-color: #4169E1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="673.0" prefWidth="945.0" style="-fx-background-color: #4169E1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VendasListController">
    <children>
       <AnchorPane prefHeight="37.0" prefWidth="810.0" style="-fx-background-color: #00008B;">
          <children>
@@ -18,7 +18,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="436.0" layoutY="8.0" prefHeight="29.0" prefWidth="132.0" text="Venda nº" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="6.0">
+            <Label fx:id="lbVenda" layoutX="436.0" layoutY="8.0" prefHeight="29.0" prefWidth="132.0" text="Venda nº" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="6.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

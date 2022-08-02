@@ -14,11 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import pdv.application.Program;
 import pdv.model.services.ItemService;
+import pdv.model.services.VendasService;
 
 public class ViewController implements Initializable{
 	
@@ -41,7 +40,10 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemVendas() {
-		loadView("/gui/VendasList.fxml", x -> {});
+		loadView("/gui/VendasList.fxml", (VendasListController controller) -> {
+			controller.setService(new VendasService());
+			controller.updateTableView();
+		});
 	}
 	
 	@FXML
