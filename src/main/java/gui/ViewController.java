@@ -39,7 +39,7 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemVendas() {
-		System.out.println("vendas");
+		loadView("/gui/VendasList.fxml", x -> {});
 	}
 	
 	@FXML
