@@ -1,12 +1,15 @@
 package pdv.model.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,9 @@ public class Vendas implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@OneToMany(mappedBy = "id.vendas")
+	private Set<VendaItem> items = new HashSet<>();
 	
 	public Vendas() {
 	}
@@ -32,6 +38,10 @@ public class Vendas implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Set<VendaItem> getItems(){
+		return items;
 	}
 
 	@Override

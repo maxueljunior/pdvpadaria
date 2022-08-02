@@ -1,10 +1,13 @@
 package pdv.model.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Item implements Serializable{
 	private String name;
 	private Integer quantidade;
 	private Double preco;
+	
+	@OneToMany(mappedBy = "id.item")
+	private Set<VendaItem> items = new HashSet<>();
 	
 	public Item() {}
 
@@ -57,6 +63,14 @@ public class Item implements Serializable{
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+	
+	public Set<Vendas> getVendas(){
+		Set<Vendas> set = new HashSet<>();
+		for(VendaItem x : items) {
+			set.add(x.getVendas());
+		}
+		return set;
 	}
 
 	@Override
