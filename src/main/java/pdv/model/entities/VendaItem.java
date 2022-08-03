@@ -17,16 +17,18 @@ public class VendaItem implements Serializable{
 	@EmbeddedId
 	private VendaItemPK id = new VendaItemPK();
 	
-	private Double totalPedido;
+	private Double total;
 	private Integer qntPedido;
+	private Double preco;
 	
 	public VendaItem() {}
 
-	public VendaItem(Item item, Vendas venda, Double totalPedido, Integer qntPedido) {
+	public VendaItem(Item item, Vendas venda, Double total, Integer qntPedido, Double preco) {
 		id.setItem(item);
 		id.setVendas(venda);
-		this.totalPedido = totalPedido;
+		this.total = total;
 		this.qntPedido = qntPedido;
+		this.preco = preco;
 	}
 	
 	public Item getItem() {
@@ -45,12 +47,12 @@ public class VendaItem implements Serializable{
 		id.setVendas(venda);
 	}
 	
-	public Double getTotalPedido() {
-		return totalPedido;
+	public Double getTotal() {
+		return total;
 	}
 
-	public void setTotalPedido(Double totalPedido) {
-		this.totalPedido = totalPedido;
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 	public Integer getQntPedido() {
@@ -59,6 +61,14 @@ public class VendaItem implements Serializable{
 
 	public void setQntPedido(Integer qntPedido) {
 		this.qntPedido = qntPedido;
+	}
+	
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 
 	@Override
@@ -77,7 +87,5 @@ public class VendaItem implements Serializable{
 		VendaItem other = (VendaItem) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 	
 }

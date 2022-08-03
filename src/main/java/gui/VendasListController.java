@@ -8,14 +8,16 @@ import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import pdv.model.entities.Item;
+import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
@@ -25,7 +27,27 @@ public class VendasListController implements Initializable, DataChangeListener {
 	private VendasService service;
 
 	private VendaItemService serviceItem;
-
+	
+	private Vendas vendas = new Vendas();
+	
+	@FXML
+	private TableView<VendaItem> tableViewVendaItem;
+	
+	@FXML
+	private TableColumn<VendaItem, Integer> tableColumnId;
+	
+	@FXML
+	private TableColumn<VendaItem, String> tableColumnDescri;
+	
+	@FXML
+	private TableColumn<VendaItem, Double> tableColumnPreco;
+	
+	@FXML
+	private TableColumn<VendaItem, Integer> tableColumnQnt;
+	
+	@FXML
+	private TableColumn<VendaItem, Double> tableColumnTotal;
+	
 	@FXML
 	private Label lbVenda;
 
@@ -65,7 +87,17 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	public void btnAddItemAction() {
-		System.out.println("Adicionando..");
+		
+		VendaItem venda = new VendaItem();
+		
+		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
+		venda.setVendas(vendas);
+		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
+		venda.setPreco(Utils.tryParseToDouble(txtPreco.getText()));
+		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
+
+		
+		serviceItem.saveOrUpdate(venda);
 	}
 
 	public void btnConcluir() {
@@ -113,8 +145,7 @@ public class VendasListController implements Initializable, DataChangeListener {
 		if (serviceItem == null) {
 			throw new IllegalStateException("SERVIÇO NULLO");
 		}
-		Vendas venda = new Vendas();
-		service.saveOrUpdate(venda);
-		lbVenda.setText("Nº da Venda: " + String.valueOf(venda.getId()));
+		service.saveOrUpdate(vendas);
+		lbVenda.setText("Nº da Venda: " + String.valueOf(vendas.getId()));
 	}
 }
