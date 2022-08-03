@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import pdv.model.entities.Item;
 import pdv.model.entities.Vendas;
 
 public class VendasService {

@@ -17,6 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import pdv.application.Program;
 import pdv.model.services.ItemService;
+import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
 
 public class ViewController implements Initializable{
@@ -42,6 +43,7 @@ public class ViewController implements Initializable{
 	public void onMenuItemVendas() {
 		loadView("/gui/VendasList.fxml", (VendasListController controller) -> {
 			controller.setService(new VendasService());
+			controller.setServiceItem(new VendaItemService());
 			controller.updateTableView();
 		});
 	}

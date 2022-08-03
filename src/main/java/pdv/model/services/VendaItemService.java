@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 
 public class VendaItemService {
@@ -19,6 +20,17 @@ public class VendaItemService {
 		em.close();
 		emf.close();
 		return list;
+	}
+	
+	public Item findItemById(Integer id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Item i = em.find(Item.class, id);
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return i;
 	}
 	
 	public void saveOrUpdate(VendaItem obj) {
