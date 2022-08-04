@@ -103,9 +103,10 @@ public class VendasListController implements Initializable, DataChangeListener {
 		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
 		venda.setPreco(Utils.tryParseToDouble(txtPreco.getText()));
 		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
-
-		
+		venda.setDescricao(txtDescricao.getText());
 		serviceItem.saveOrUpdate(venda);
+		updateTableView();
+		
 	}
 
 	public void btnConcluir() {
@@ -138,6 +139,11 @@ public class VendasListController implements Initializable, DataChangeListener {
 	
 	private void initializeNodes() {
 		
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnDescri.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		tableColumnQnt.setCellValueFactory(new PropertyValueFactory<>("qntPedido"));
+		tableColumnTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
 
 	@Override
@@ -151,6 +157,10 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	public void updateTableView() {
+		
+	}
+	
+	public void initializeVendas() {
 		if (service == null) {
 			throw new IllegalStateException("SERVIÇO NULLO");
 		}
@@ -159,6 +169,5 @@ public class VendasListController implements Initializable, DataChangeListener {
 		}
 		service.saveOrUpdate(vendas);
 		lbVenda.setText("Nº da Venda: " + String.valueOf(vendas.getId()));
-		
 	}
 }

@@ -44,7 +44,7 @@ public class ViewController implements Initializable{
 		loadView("/gui/VendasList.fxml", (VendasListController controller) -> {
 			controller.setService(new VendasService());
 			controller.setServiceItem(new VendaItemService());
-			controller.updateTableView();
+			controller.initializeVendas();
 		});
 	}
 	

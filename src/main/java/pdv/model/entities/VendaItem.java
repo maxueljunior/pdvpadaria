@@ -18,17 +18,19 @@ public class VendaItem implements Serializable{
 	private VendaItemPK id = new VendaItemPK();
 	
 	private Double total;
+	private String descricao;
 	private Integer qntPedido;
 	private Double preco;
 	
 	public VendaItem() {}
 
-	public VendaItem(Item item, Vendas venda, Double total, Integer qntPedido, Double preco) {
+	public VendaItem(Item item, Vendas venda, Double total, String descricao, Integer qntPedido, Double preco) {
 		id.setItem(item);
 		id.setVendas(venda);
 		this.total = total;
 		this.qntPedido = qntPedido;
 		this.preco = preco;
+		this.descricao = descricao;
 	}
 	
 	public Item getItem() {
@@ -70,6 +72,14 @@ public class VendaItem implements Serializable{
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 	@Override
 	public int hashCode() {
@@ -87,5 +97,7 @@ public class VendaItem implements Serializable{
 		VendaItem other = (VendaItem) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 }
