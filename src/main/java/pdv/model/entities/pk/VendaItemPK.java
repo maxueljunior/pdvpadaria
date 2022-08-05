@@ -16,17 +16,17 @@ public class VendaItemPK implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "item_id")
-	private Item item;
+	private Item itens;
 	
 	@ManyToOne
 	@JoinColumn(name = "venda_id")
 	private Vendas vendas;
 	
 	public Item getItem() {
-		return item;
+		return itens;
 	}
 	public void setItem(Item item) {
-		this.item = item;
+		this.itens = item;
 	}
 	public Vendas getVendas() {
 		return vendas;
@@ -36,7 +36,7 @@ public class VendaItemPK implements Serializable{
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(item, vendas);
+		return Objects.hash(itens, vendas);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -47,7 +47,7 @@ public class VendaItemPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		VendaItemPK other = (VendaItemPK) obj;
-		return Objects.equals(item, other.item) && Objects.equals(vendas, other.vendas);
+		return Objects.equals(itens, other.itens) && Objects.equals(vendas, other.vendas);
 	}
 	
 	

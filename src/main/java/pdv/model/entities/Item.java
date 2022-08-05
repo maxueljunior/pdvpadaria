@@ -21,7 +21,7 @@ public class Item implements Serializable{
 	private Integer quantidade;
 	private Double preco;
 	
-	@OneToMany(mappedBy = "id.item")
+	@OneToMany(mappedBy = "id.itens")
 	private Set<VendaItem> items = new HashSet<>();
 	
 	public Item() {}
@@ -89,4 +89,10 @@ public class Item implements Serializable{
 		Item other = (Item) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "" + id;
+	}
+
 }

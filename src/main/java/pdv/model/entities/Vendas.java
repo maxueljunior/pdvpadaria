@@ -25,11 +25,14 @@ public class Vendas implements Serializable{
 	@OneToMany(mappedBy = "id.vendas")
 	private Set<VendaItem> items = new HashSet<>();
 	
+	private Double totalVenda;
+	
 	public Vendas() {
 	}
 
-	public Vendas(Integer id) {
+	public Vendas(Integer id, Double totalVenda) {
 		this.id = id;
+		this.setTotalVenda(totalVenda);
 	}
 
 	public Integer getId() {
@@ -42,6 +45,14 @@ public class Vendas implements Serializable{
 	
 	public Set<VendaItem> getItems(){
 		return items;
+	}
+	
+	public Double getTotalVenda() {
+		return totalVenda;
+	}
+
+	public void setTotalVenda(Double totalVenda) {
+		this.totalVenda = totalVenda;
 	}
 
 	@Override

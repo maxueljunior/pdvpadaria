@@ -1,6 +1,7 @@
 package gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -12,16 +13,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-import pdv.application.Program;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
@@ -35,6 +34,8 @@ public class VendasListController implements Initializable, DataChangeListener {
 	private VendaItemService serviceItem;
 	
 	private Vendas vendas = new Vendas();
+	
+	private Double soma;
 	
 	@FXML
 	private TableView<VendaItem> tableViewVendaItem;
@@ -56,6 +57,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 	
 	@FXML
 	private Label lbVenda;
+	
+	@FXML
+	private Label lbTotalVenda;
 
 	@FXML
 	private TextField txtIdProduto;
@@ -85,6 +89,8 @@ public class VendasListController implements Initializable, DataChangeListener {
 	private Button btnPesquisar;
 	
 	private ObservableList<VendaItem> obsList;
+	
+	private List<VendaItem> list = new ArrayList<>();
 
 	public void setService(VendasService service) {
 		this.service = service;
@@ -97,7 +103,6 @@ public class VendasListController implements Initializable, DataChangeListener {
 	public void btnAddItemAction() {
 		
 		VendaItem venda = new VendaItem();
-		
 		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
 		venda.setVendas(vendas);
 		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
@@ -105,8 +110,7 @@ public class VendasListController implements Initializable, DataChangeListener {
 		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
 		venda.setDescricao(txtDescricao.getText());
 		serviceItem.saveOrUpdate(venda);
-		updateTableView();
-		
+		updateTableView(venda);
 	}
 
 	public void btnConcluir() {
@@ -139,11 +143,12 @@ public class VendasListController implements Initializable, DataChangeListener {
 	
 	private void initializeNodes() {
 		
-		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("item"));
 		tableColumnDescri.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		tableColumnQnt.setCellValueFactory(new PropertyValueFactory<>("qntPedido"));
 		tableColumnTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
 	}
 
 	@Override
@@ -156,8 +161,10 @@ public class VendasListController implements Initializable, DataChangeListener {
 		initializeNodes();
 	}
 
-	public void updateTableView() {
-		
+	public void updateTableView(VendaItem obj) {
+		list.add(obj);
+		obsList = FXCollections.observableArrayList(list);
+		tableViewVendaItem.setItems(obsList);
 	}
 	
 	public void initializeVendas() {
@@ -169,5 +176,6 @@ public class VendasListController implements Initializable, DataChangeListener {
 		}
 		service.saveOrUpdate(vendas);
 		lbVenda.setText("Nº da Venda: " + String.valueOf(vendas.getId()));
+		lbTotalVenda.setText("0.00");
 	}
 }

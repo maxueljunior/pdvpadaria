@@ -44,7 +44,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="646.0" layoutY="520.0" prefHeight="25.0" prefWidth="161.0" text="R$" textFill="#58ff05" AnchorPane.leftAnchor="646.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="520.0">
+            <Label fx:id="lbTotalVenda" layoutX="646.0" layoutY="520.0" prefHeight="25.0" prefWidth="161.0" text="R$" textFill="#58ff05" AnchorPane.leftAnchor="646.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="520.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
