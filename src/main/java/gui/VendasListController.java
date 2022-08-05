@@ -32,32 +32,32 @@ public class VendasListController implements Initializable, DataChangeListener {
 	private VendasService service;
 
 	private VendaItemService serviceItem;
-	
+
 	private Vendas vendas = new Vendas();
-	
-	private Double soma;
-	
+
+	private Double soma = 0.00;
+
 	@FXML
 	private TableView<VendaItem> tableViewVendaItem;
-	
+
 	@FXML
 	private TableColumn<VendaItem, Integer> tableColumnId;
-	
+
 	@FXML
 	private TableColumn<Item, String> tableColumnDescri;
-	
+
 	@FXML
 	private TableColumn<VendaItem, Double> tableColumnPreco;
-	
+
 	@FXML
 	private TableColumn<VendaItem, Integer> tableColumnQnt;
-	
+
 	@FXML
 	private TableColumn<VendaItem, Double> tableColumnTotal;
-	
+
 	@FXML
 	private Label lbVenda;
-	
+
 	@FXML
 	private Label lbTotalVenda;
 
@@ -87,9 +87,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private Button btnPesquisar;
-	
+
 	private ObservableList<VendaItem> obsList;
-	
+
 	private List<VendaItem> list = new ArrayList<>();
 
 	public void setService(VendasService service) {
@@ -101,7 +101,7 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	public void btnAddItemAction() {
-		
+
 		VendaItem venda = new VendaItem();
 		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
 		venda.setVendas(vendas);
@@ -140,9 +140,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 			}
 		}
 	}
-	
+
 	private void initializeNodes() {
-		
+
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("item"));
 		tableColumnDescri.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
@@ -153,7 +153,7 @@ public class VendasListController implements Initializable, DataChangeListener {
 
 	@Override
 	public void onDataChanged() {
-		
+
 	}
 
 	@Override
@@ -165,8 +165,13 @@ public class VendasListController implements Initializable, DataChangeListener {
 		list.add(obj);
 		obsList = FXCollections.observableArrayList(list);
 		tableViewVendaItem.setItems(obsList);
+
+		String aux = String.valueOf(obj.getQntPedido());
+		Double quantidade = Utils.tryParseToDouble(aux);
+		soma = soma + (obj.getPreco() * quantidade);
+		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
-	
+
 	public void initializeVendas() {
 		if (service == null) {
 			throw new IllegalStateException("SERVIÇO NULLO");
@@ -176,6 +181,6 @@ public class VendasListController implements Initializable, DataChangeListener {
 		}
 		service.saveOrUpdate(vendas);
 		lbVenda.setText("Nº da Venda: " + String.valueOf(vendas.getId()));
-		lbTotalVenda.setText("0.00");
+		lbTotalVenda.setText("R$ 0.00");
 	}
 }
