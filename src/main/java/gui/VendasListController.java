@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
@@ -87,6 +88,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private Button btnPesquisar;
+	
+	@FXML
+	private Button btnAtualizar;
 
 	private ObservableList<VendaItem> obsList;
 
@@ -101,8 +105,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	public void btnAddItemAction() {
-
+		
 		VendaItem venda = new VendaItem();
+		
 		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
 		venda.setVendas(vendas);
 		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
@@ -111,6 +116,22 @@ public class VendasListController implements Initializable, DataChangeListener {
 		venda.setDescricao(txtDescricao.getText());
 		serviceItem.saveOrUpdate(venda);
 		updateTableView(venda);
+	}
+	
+	public void btnAtualizarAction() {
+		
+		String id = txtIdProduto.getText();
+		Integer qnt = Utils.tryParseToInt(txtQuantidade.getText());
+		String aux = String.valueOf(qnt);
+		Double somaTotal = Utils.tryParseToDouble(aux) * Utils.tryParseToDouble(txtPreco.getText());
+		
+		for(int i = 0 ; i < obsList.size(); i++) {
+			if(id.equals(obsList.get(i).getItem().toString())) {
+				obsList.get(i).setQntPedido(qnt);
+				obsList.get(i).setTotal(somaTotal);
+				tableViewVendaItem.setItems(obsList);
+			}
+		}
 	}
 
 	public void btnConcluir() {
@@ -123,6 +144,19 @@ public class VendasListController implements Initializable, DataChangeListener {
 
 	public void btnPesquisar() {
 		System.out.println("Pesquisando..");
+	}
+	
+	public void itensVendasClicked(MouseEvent e) {
+		
+		int i = tableViewVendaItem.getSelectionModel().getSelectedIndex();
+		
+		VendaItem v = (VendaItem)tableViewVendaItem.getItems().get(i);
+		
+		txtIdProduto.setText(String.valueOf(v.getItem().getId()));
+		txtDescricao.setText(v.getDescricao());
+		txtPreco.setText(String.valueOf(v.getPreco()));
+		txtQuantidade.setText(String.valueOf(v.getQntPedido()));
+		
 	}
 
 	public void EnterIdProduto(KeyEvent event) {

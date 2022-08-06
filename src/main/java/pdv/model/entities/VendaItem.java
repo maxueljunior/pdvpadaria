@@ -98,6 +98,12 @@ public class VendaItem implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "VendaItem [id=" + id + ", total=" + total + ", descricao=" + descricao + ", qntPedido=" + qntPedido
+				+ ", preco=" + preco + "]";
+	}
+
 	
 	
 }
