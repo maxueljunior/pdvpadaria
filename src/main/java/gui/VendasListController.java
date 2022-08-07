@@ -28,7 +28,7 @@ import pdv.model.entities.Vendas;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
 
-public class VendasListController implements Initializable, DataChangeListener {
+public class VendasListController implements Initializable {
 
 	private VendasService service;
 
@@ -37,6 +37,8 @@ public class VendasListController implements Initializable, DataChangeListener {
 	private Vendas vendas = new Vendas();
 
 	private Double soma = 0.00;
+
+	private Double somaAux = 0.00;
 
 	@FXML
 	private TableView<VendaItem> tableViewVendaItem;
@@ -88,7 +90,10 @@ public class VendasListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private Button btnPesquisar;
-	
+
+	@FXML
+	private Button btnDelete;
+
 	@FXML
 	private Button btnAtualizar;
 
@@ -105,9 +110,9 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	public void btnAddItemAction() {
-		
+
 		VendaItem venda = new VendaItem();
-		
+
 		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
 		venda.setVendas(vendas);
 		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
@@ -115,48 +120,109 @@ public class VendasListController implements Initializable, DataChangeListener {
 		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
 		venda.setDescricao(txtDescricao.getText());
 		serviceItem.saveOrUpdate(venda);
-		updateTableView(venda);
+		list.add(venda);
+		updateTableView();
+
+		String aux = String.valueOf(venda.getQntPedido());
+		Double quantidade = Utils.tryParseToDouble(aux);
+		soma = soma + (venda.getPreco() * quantidade);
+		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
-	
+
 	public void btnAtualizarAction() {
-		
+
+		VendaItem venda = new VendaItem();
+		System.out.println(somaAux);
+
+		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
+		venda.setVendas(vendas);
+		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
+		venda.setPreco(Utils.tryParseToDouble(txtPreco.getText()));
+		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
+		venda.setDescricao(txtDescricao.getText());
+
 		String id = txtIdProduto.getText();
 		Integer qnt = Utils.tryParseToInt(txtQuantidade.getText());
 		String aux = String.valueOf(qnt);
 		Double somaTotal = Utils.tryParseToDouble(aux) * Utils.tryParseToDouble(txtPreco.getText());
-		
-		for(int i = 0 ; i < obsList.size(); i++) {
-			if(id.equals(obsList.get(i).getItem().toString())) {
-				obsList.get(i).setQntPedido(qnt);
-				obsList.get(i).setTotal(somaTotal);
-				tableViewVendaItem.setItems(obsList);
+
+		if (somaTotal > somaAux) {
+			soma = soma + (somaTotal - somaAux);
+		} else if (somaTotal < somaAux) {
+			soma = soma - (somaAux - somaTotal);
+		} else if (somaTotal == somaAux) {
+			Alerts.showAlert("Quantidade Igual", null, "A quantidade está igual a anterior!", AlertType.INFORMATION);
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			if (id.equals(list.get(i).getItem().toString())) {
+				serviceItem.saveOrUpdate(venda);
+				list.get(i).setQntPedido(qnt);
+				list.get(i).setTotal(somaTotal);
+				updateTableView();
+				tableViewVendaItem.refresh();
 			}
 		}
+		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
 
-	public void btnConcluir() {
+	public void btnDeleteAction() {
+
+		VendaItem venda = new VendaItem();
+
+		venda.setItem(serviceItem.findItemById(Utils.tryParseToInt(txtIdProduto.getText())));
+		venda.setVendas(vendas);
+		venda.setQntPedido(Utils.tryParseToInt(txtQuantidade.getText()));
+		venda.setPreco(Utils.tryParseToDouble(txtPreco.getText()));
+		venda.setTotal(Utils.tryParseToDouble(txtPreco.getText()) * venda.getQntPedido());
+		venda.setDescricao(txtDescricao.getText());
+
+		String id = txtIdProduto.getText();
+		Integer qnt = Utils.tryParseToInt(txtQuantidade.getText());
+		String aux = String.valueOf(qnt);
+		
+		for (int i = 0; i < list.size(); i++) {
+			if (id.equals(list.get(i).getItem().toString())) {
+				serviceItem.remove(venda);
+				list.remove(i);
+				updateTableView();
+				tableViewVendaItem.refresh();
+			}
+		}
+		
+		soma = soma - somaAux;
+		
+		lbTotalVenda.setText("R$ " + String.valueOf(soma));
+
+	}
+
+	public void btnConcluirAction() {
 		System.out.println("Concluindo..");
 	}
 
-	public void btnSair() {
+	public void btnSairAction() {
 		System.out.println("Saindo..");
 	}
 
-	public void btnPesquisar() {
+	public void btnPesquisarAction() {
 		System.out.println("Pesquisando..");
 	}
-	
+
 	public void itensVendasClicked(MouseEvent e) {
-		
+
 		int i = tableViewVendaItem.getSelectionModel().getSelectedIndex();
-		
-		VendaItem v = (VendaItem)tableViewVendaItem.getItems().get(i);
-		
+
+		somaAux = 0.00;
+
+		VendaItem v = (VendaItem) tableViewVendaItem.getItems().get(i);
+
 		txtIdProduto.setText(String.valueOf(v.getItem().getId()));
 		txtDescricao.setText(v.getDescricao());
 		txtPreco.setText(String.valueOf(v.getPreco()));
 		txtQuantidade.setText(String.valueOf(v.getQntPedido()));
-		
+
+		somaAux = Utils.tryParseToDouble(txtPreco.getText()) * Utils.tryParseToInt(txtQuantidade.getText());
+
 	}
 
 	public void EnterIdProduto(KeyEvent event) {
@@ -186,24 +252,13 @@ public class VendasListController implements Initializable, DataChangeListener {
 	}
 
 	@Override
-	public void onDataChanged() {
-
-	}
-
-	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 	}
 
-	public void updateTableView(VendaItem obj) {
-		list.add(obj);
+	public void updateTableView() {
 		obsList = FXCollections.observableArrayList(list);
 		tableViewVendaItem.setItems(obsList);
-
-		String aux = String.valueOf(obj.getQntPedido());
-		Double quantidade = Utils.tryParseToDouble(aux);
-		soma = soma + (obj.getPreco() * quantidade);
-		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
 
 	public void initializeVendas() {
