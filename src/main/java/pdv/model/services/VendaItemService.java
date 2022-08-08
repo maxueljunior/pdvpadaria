@@ -5,13 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
 
 public class VendaItemService {
-	
+
 	public List<VendaItem> findAll(){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -49,12 +50,14 @@ public class VendaItemService {
 		emf.close();
 	}
 	
-	public void remove(VendaItem obj){
+	public void remove(VendaItem vendaItem, Vendas vendas){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		VendaItem i = em.find(VendaItem.class, obj.getItem());
-		em.remove(i);
+		Query query = em.createQuery("DELETE FROM VendaItem c WHERE c.id.itens = :itemid AND c.id.vendas = :vendaid");
+		query.setParameter("itemid", vendaItem.getItem());
+		query.setParameter("vendaid", vendas);
+		query.executeUpdate();
 		em.getTransaction().commit();
 		em.close();
 		emf.close();

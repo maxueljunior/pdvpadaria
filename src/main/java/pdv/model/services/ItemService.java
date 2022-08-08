@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 import pdv.model.entities.Item;
 
 public class ItemService {
-	
+
 	public List<Item> findAll(){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();

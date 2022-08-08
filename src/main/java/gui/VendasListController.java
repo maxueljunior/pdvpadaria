@@ -183,7 +183,7 @@ public class VendasListController implements Initializable {
 		
 		for (int i = 0; i < list.size(); i++) {
 			if (id.equals(list.get(i).getItem().toString())) {
-				serviceItem.remove(venda);
+				serviceItem.remove(venda, vendas);
 				list.remove(i);
 				updateTableView();
 				tableViewVendaItem.refresh();
