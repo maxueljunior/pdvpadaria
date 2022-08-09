@@ -1,17 +1,20 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
@@ -47,7 +53,7 @@ public class VendasListController implements Initializable {
 	private TableColumn<VendaItem, Integer> tableColumnId;
 
 	@FXML
-	private TableColumn<Item, String> tableColumnDescri;
+	private TableColumn<VendaItem, String> tableColumnDescri;
 
 	@FXML
 	private TableColumn<VendaItem, Double> tableColumnPreco;
@@ -81,9 +87,6 @@ public class VendasListController implements Initializable {
 
 	@FXML
 	private Button btnAdicionarItem;
-
-	@FXML
-	private Button btnSair;
 
 	@FXML
 	private Button btnConcluir;
@@ -200,12 +203,10 @@ public class VendasListController implements Initializable {
 		System.out.println("Concluindo..");
 	}
 
-	public void btnSairAction() {
-		System.out.println("Saindo..");
-	}
-
-	public void btnPesquisarAction() {
-		System.out.println("Pesquisando..");
+	public void btnPesquisarAction(ActionEvent event) {
+		Stage parentStage = Utils.currentStage(event);
+		
+		createDialogForm("/gui/PesquisarItemVendaList.fxml", parentStage);
 	}
 
 	public void itensVendasClicked(MouseEvent e) {
@@ -271,5 +272,25 @@ public class VendasListController implements Initializable {
 		service.saveOrUpdate(vendas);
 		lbVenda.setText("Nº da Venda: " + String.valueOf(vendas.getId()));
 		lbTotalVenda.setText("R$ 0.00");
+	}
+	
+	private void createDialogForm(String absoluteName, Stage parentStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+
+			//VendasListController controller = loader.getController();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Pesquisar Item no Estoque");
+			dialogStage.setScene(new Scene(pane));
+			dialogStage.setResizable(true);
+			dialogStage.initOwner(parentStage);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			Alerts.showAlert("IOException", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
+		}
 	}
 }
