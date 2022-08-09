@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import gui.listeners.DataChangeListener;
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import pdv.model.entities.Item;
 import pdv.model.services.ItemService;
@@ -92,6 +96,14 @@ public class PesquisaItemVendaListController implements Initializable{
 
 		Item v = (Item) tableViewItem.getItems().get(i);
 		notifyDataChangeListeners(v);
+	}
+	
+	@FXML
+	public void EnterIdProduto(KeyEvent event) {
+
+		if (event.getCode() == KeyCode.ENTER) {
+			Utils.currentStage(event).close();
+		}
 	}
 
 	private void notifyDataChangeListeners(Item item) {
