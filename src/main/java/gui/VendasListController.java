@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -35,7 +36,7 @@ import pdv.model.services.ItemService;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
 
-public class VendasListController implements Initializable {
+public class VendasListController implements Initializable, DataChangeListener{
 
 	private VendasService service;
 
@@ -290,6 +291,7 @@ public class VendasListController implements Initializable {
 			PesquisaItemVendaListController controller = loader.getController();
 			controller.setItemService(new ItemService());
 			controller.updateTableView();
+			controller.subscribeDataChangeListener(this);
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Pesquisar Item no Estoque");
@@ -303,4 +305,20 @@ public class VendasListController implements Initializable {
 			Alerts.showAlert("IOException", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
 		}
 	}
+
+	@Override
+	public void onDataChanged() {
+		
+	}
+
+	@Override
+	public void onSelect(Item item) {
+		txtIdProduto.setText(String.valueOf(item.getId()));
+		txtDescricao.setText(item.getName());
+		txtPreco.setText(String.valueOf(item.getPreco()));
+		txtQuantidade.setText("1");
+	}
+
+
+
 }

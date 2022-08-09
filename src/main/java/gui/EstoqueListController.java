@@ -182,4 +182,10 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 		}
 	}
 
+	@Override
+	public void onSelect(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
