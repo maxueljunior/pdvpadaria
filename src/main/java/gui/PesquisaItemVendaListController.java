@@ -1,8 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,8 +16,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pdv.application.Program;
 import pdv.model.entities.Item;
+import pdv.model.services.ItemService;
 
 public class PesquisaItemVendaListController implements Initializable{
+	
+	private ItemService service;
 	
 	@FXML
 	private Button btnPesquisar;
@@ -37,8 +43,14 @@ public class PesquisaItemVendaListController implements Initializable{
 	@FXML
 	private TableColumn<Item, Integer> tableColumnQnt;
 	
+	private ObservableList<Item> obsList;
+	
 	public void onBtnPesquisar() {
 		System.out.println("pesquisar...");
+	}
+	
+	public void setItemService(ItemService service) {
+		this.service = service;
 	}
 	
 	@Override
@@ -46,6 +58,15 @@ public class PesquisaItemVendaListController implements Initializable{
 		initializeNodes();
 	}
 	
+	public void updateTableView() {
+		if (service == null) {
+			throw new IllegalStateException("Serviço nullo");
+		}
+
+		List<Item> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewItem.setItems(obsList);
+	}
 	
 	private void initializeNodes() {
 

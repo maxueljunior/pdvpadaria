@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
+import pdv.model.services.ItemService;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
 
@@ -279,7 +280,9 @@ public class VendasListController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
 
-			//VendasListController controller = loader.getController();
+			PesquisaItemVendaListController controller = loader.getController();
+			controller.setItemService(new ItemService());
+			controller.updateTableView();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Pesquisar Item no Estoque");
