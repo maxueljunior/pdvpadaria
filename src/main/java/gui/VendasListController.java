@@ -112,7 +112,8 @@ public class VendasListController implements Initializable {
 	public void setServiceItem(VendaItemService serviceItem) {
 		this.serviceItem = serviceItem;
 	}
-
+	
+	@FXML
 	public void btnAddItemAction() {
 
 		VendaItem venda = new VendaItem();
@@ -132,7 +133,8 @@ public class VendasListController implements Initializable {
 		soma = soma + (venda.getPreco() * quantidade);
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
-
+	
+	@FXML
 	public void btnAtualizarAction() {
 
 		VendaItem venda = new VendaItem();
@@ -169,7 +171,8 @@ public class VendasListController implements Initializable {
 		}
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 	}
-
+	
+	@FXML
 	public void btnDeleteAction() {
 
 		VendaItem venda = new VendaItem();
@@ -199,7 +202,8 @@ public class VendasListController implements Initializable {
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 
 	}
-
+	
+	@FXML
 	public void btnConcluirAction() {
 		System.out.println("Concluindo..");
 	}
@@ -208,8 +212,10 @@ public class VendasListController implements Initializable {
 		Stage parentStage = Utils.currentStage(event);
 		
 		createDialogForm("/gui/PesquisarItemVendaList.fxml", parentStage);
+		
 	}
-
+	
+	@FXML
 	public void itensVendasClicked(MouseEvent e) {
 
 		int i = tableViewVendaItem.getSelectionModel().getSelectedIndex();
@@ -226,7 +232,8 @@ public class VendasListController implements Initializable {
 		somaAux = Utils.tryParseToDouble(txtPreco.getText()) * Utils.tryParseToInt(txtQuantidade.getText());
 
 	}
-
+	
+	@FXML
 	public void EnterIdProduto(KeyEvent event) {
 
 		if (event.getCode() == KeyCode.ENTER) {

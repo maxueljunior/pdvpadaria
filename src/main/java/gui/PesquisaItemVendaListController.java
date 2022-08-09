@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,14 +15,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pdv.application.Program;
 import pdv.model.entities.Item;
 import pdv.model.services.ItemService;
 
 public class PesquisaItemVendaListController implements Initializable{
 	
 	private ItemService service;
+	
+	private Integer idItem;
 	
 	@FXML
 	private Button btnPesquisar;
@@ -53,6 +57,14 @@ public class PesquisaItemVendaListController implements Initializable{
 		this.service = service;
 	}
 	
+	public Integer getIdItem() {
+		return idItem;
+	}
+
+	public void setIdItem(Integer idItem) {
+		this.idItem = idItem;
+	}
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
@@ -76,4 +88,14 @@ public class PesquisaItemVendaListController implements Initializable{
 		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
 
 	}
+	
+	@FXML
+	public void itensVendasClicked(MouseEvent e) {
+
+		int i = tableViewItem.getSelectionModel().getSelectedIndex();
+
+		Item v = (Item) tableViewItem.getItems().get(i);
+		
+	}
+	
 }
