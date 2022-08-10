@@ -9,7 +9,6 @@ import gui.listeners.DataChangeListener;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -54,7 +53,10 @@ public class PesquisaItemVendaListController implements Initializable{
 	
 	@FXML
 	public void onBtnPesquisar() {
-		System.out.println("pesquisar...");
+		List<Item> list = service.findByDescricao(txtPesquisar.getText().toUpperCase());
+		obsList = FXCollections.observableArrayList(list);
+		tableViewItem.setItems(obsList);
+		tableViewItem.refresh();
 	}
 	
 	public void setItemService(ItemService service) {

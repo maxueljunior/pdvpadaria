@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
+import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -258,7 +259,9 @@ public class VendasListController implements Initializable, DataChangeListener{
 		tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		tableColumnQnt.setCellValueFactory(new PropertyValueFactory<>("qntPedido"));
 		tableColumnTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-
+		
+		Constraints.setTextFieldInteger(txtIdProduto);
+		
 	}
 
 	@Override
@@ -318,7 +321,7 @@ public class VendasListController implements Initializable, DataChangeListener{
 		txtPreco.setText(String.valueOf(item.getPreco()));
 		txtQuantidade.setText("1");
 	}
-
-
+	
+	
 
 }

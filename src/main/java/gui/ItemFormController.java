@@ -101,7 +101,7 @@ public class ItemFormController implements Initializable {
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			exception.addError("name", "O nome do produto está vazio");
 		}
-		obj.setName(txtName.getText());
+		obj.setName(txtName.getText().toUpperCase());
 
 		if (txtQuantidade.getText() == "" || txtQuantidade.getText() == "0") {
 			exception.addError("quantidade", "A quantidade está vazia ou zerada");

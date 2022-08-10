@@ -30,5 +30,13 @@ public class Utils {
 			return null;
 		}
 	}
+	
+	public static Long tryParseToLong(String text) {
+		try {
+			return Long.parseLong(text);
+		}catch(NumberFormatException e) {
+			return null;
+		}
+	}
 
 }
