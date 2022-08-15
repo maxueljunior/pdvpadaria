@@ -16,6 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import pdv.application.Program;
+import pdv.model.services.ClienteService;
 import pdv.model.services.ItemService;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
@@ -58,7 +59,10 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemClientes() {
-		loadView("/gui/ClientList.fxml", x-> {});
+		loadView("/gui/ClientList.fxml", (ClientListController controller) ->{
+			controller.setService(new ClienteService());
+			controller.updateTableView();
+		});
 	}
 	
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initAction) {
