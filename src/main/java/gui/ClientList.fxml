@@ -18,7 +18,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="tableViewCliente" layoutX="22.0" layoutY="87.0" prefHeight="321.0" prefWidth="568.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="60.0">
+            <TableView fx:id="tableViewCliente" layoutX="22.0" layoutY="87.0" onMouseClicked="#onClickCliente" prefHeight="321.0" prefWidth="568.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="60.0">
                <columns>
                   <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
                   <TableColumn fx:id="tableColumnNome" prefWidth="318.0" text="Nome Completo" />
@@ -43,7 +43,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtId" layoutX="162.0" layoutY="398.0" prefHeight="25.0" prefWidth="90.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="368.0" />
+            <TextField fx:id="txtId" disable="true" layoutX="162.0" layoutY="398.0" prefHeight="25.0" prefWidth="90.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="368.0" />
             <TextField fx:id="txtNome" layoutX="168.0" layoutY="425.0" prefHeight="25.0" prefWidth="339.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="119.0" />
             <TextField fx:id="txtTelefone" layoutX="168.0" layoutY="452.0" prefHeight="25.0" prefWidth="222.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="236.0" />
             <Button fx:id="btnSalvar" layoutX="20.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnSalvarAction" prefHeight="48.0" prefWidth="140.0" text="ADICIONAR" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="20.0" />
