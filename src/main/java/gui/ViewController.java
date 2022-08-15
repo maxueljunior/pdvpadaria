@@ -58,8 +58,7 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemClientes() {
-		loadView("", x-> {});
-		System.out.println("teste...");
+		loadView("/gui/ClientList.fxml", x-> {});
 	}
 	
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initAction) {
