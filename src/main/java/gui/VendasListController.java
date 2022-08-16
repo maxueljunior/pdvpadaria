@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,7 +44,7 @@ public class VendasListController implements Initializable, DataChangeListener{
 
 	private VendaItemService serviceItem;
 
-	private Vendas vendas = new Vendas();
+	private Vendas vendas = new Vendas(null,null,null,Instant.now(),null);
 
 	private Double soma = 0.00;
 

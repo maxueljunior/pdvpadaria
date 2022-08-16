@@ -1,6 +1,7 @@
 package pdv.model.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -33,6 +34,8 @@ public class Vendas implements Serializable{
 	
 	private Integer vendaStatus;
 	
+	private Instant data;
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Cliente cliente;
@@ -40,10 +43,11 @@ public class Vendas implements Serializable{
 	public Vendas() {
 	}
 
-	public Vendas(Long id, Double totalVenda, VendaStatus vendaStatus, Cliente cliente) {
+	public Vendas(Long id, Double totalVenda, VendaStatus vendaStatus,Instant data, Cliente cliente) {
 		this.id = id;
 		this.totalVenda = totalVenda;
 		setVendaStatus(vendaStatus);
+		this.data = data;
 		this.cliente = cliente;
 	}
 
@@ -84,7 +88,15 @@ public class Vendas implements Serializable{
 		this.vendaStatus = vendaStatus.getCode();
 		}
 	}
+	
+	public Instant getData() {
+		return data;
+	}
 
+	public void setData(Instant data) {
+		this.data = data;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
