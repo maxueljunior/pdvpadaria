@@ -47,16 +47,16 @@ public class ClientListController implements Initializable {
 
 	@FXML
 	private TextField txtTelefone;
-
+	
 	@FXML
 	private Button btnSalvar;
-
+	
 	@FXML
 	private Button btnAtualizar;
-
+	
 	@FXML
 	private Button btnDeletar;
-
+	
 	@FXML
 	private Label lbNomeError;
 

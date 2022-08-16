@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import pdv.model.entities.enums.VendaStatus;
+
 @Entity
 @Table(name="tb_vendas")
 public class Vendas implements Serializable{
@@ -29,6 +31,8 @@ public class Vendas implements Serializable{
 	
 	private Double totalVenda;
 	
+	private Integer vendaStatus;
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Cliente cliente;
@@ -36,9 +40,10 @@ public class Vendas implements Serializable{
 	public Vendas() {
 	}
 
-	public Vendas(Long id, Double totalVenda, Cliente cliente) {
+	public Vendas(Long id, Double totalVenda, VendaStatus vendaStatus, Cliente cliente) {
 		this.id = id;
 		this.totalVenda = totalVenda;
+		setVendaStatus(vendaStatus);
 		this.cliente = cliente;
 	}
 
@@ -69,6 +74,16 @@ public class Vendas implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public VendaStatus getVendaStatus() {
+		return VendaStatus.valueOf(vendaStatus);
+	}
+
+	public void setVendaStatus(VendaStatus vendaStatus) {
+		if(vendaStatus != null) {
+		this.vendaStatus = vendaStatus.getCode();
+		}
+	}
 
 	@Override
 	public int hashCode() {
@@ -86,4 +101,5 @@ public class Vendas implements Serializable{
 		Vendas other = (Vendas) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }
