@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
+import pdv.model.entities.enums.VendaStatus;
 import pdv.model.services.ItemService;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
@@ -208,7 +209,20 @@ public class VendasListController implements Initializable, DataChangeListener{
 	
 	@FXML
 	public void btnConcluirAction() {
-		System.out.println("Concluindo..");
+		
+		ItemService itemService = new ItemService();
+		Item i = new Item();
+		
+		for(VendaItem lista : list) {
+			i = serviceItem.findItemById(Utils.tryParseToInt(lista.getItem().toString()));
+			i.setQuantidade(i.getQuantidade() - lista.getQntPedido());
+			itemService.saveOrUpdate(i);
+		}
+		
+		vendas.setCliente(null);
+		vendas.setTotalVenda(soma);
+		vendas.setVendaStatus(VendaStatus.PAGO);
+		service.saveOrUpdate(vendas);
 	}
 
 	public void btnPesquisarAction(ActionEvent event) {
