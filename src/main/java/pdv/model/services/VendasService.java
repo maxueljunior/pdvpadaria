@@ -48,4 +48,15 @@ public class VendasService {
 		emf.close();
 	}
 	
+	public Vendas findVendasById(Long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Vendas i = em.find(Vendas.class, id);
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return i;
+	}
+	
 }

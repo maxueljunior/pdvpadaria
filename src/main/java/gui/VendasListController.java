@@ -31,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pdv.model.entities.Cliente;
 import pdv.model.entities.Item;
 import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
@@ -347,6 +348,12 @@ public class VendasListController implements Initializable, DataChangeListener{
 		txtDescricao.setText(item.getName());
 		txtPreco.setText(String.valueOf(item.getPreco()));
 		txtQuantidade.setText("1");
+	}
+
+	@Override
+	public void onSelectCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

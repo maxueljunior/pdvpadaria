@@ -17,7 +17,7 @@
       </Label>
       <TextField fx:id="txtNome" layoutX="21.0" layoutY="56.0" prefHeight="27.0" prefWidth="297.0" promptText="Digite o nome..." AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="56.0" />
       <Button fx:id="btnPesquisar" layoutX="317.0" layoutY="57.0" mnemonicParsing="false" onAction="#onBtnPesquisarAction" prefHeight="25.0" prefWidth="112.0" text="Pesquisar" AnchorPane.leftAnchor="317.0" AnchorPane.topAnchor="57.0" />
-      <TableView fx:id="tableViewCliente" layoutX="23.0" layoutY="105.0" prefHeight="352.0" prefWidth="457.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="97.0">
+      <TableView fx:id="tableViewCliente" layoutX="23.0" layoutY="105.0" onKeyPressed="#EnterIdCliente" onMouseClicked="#itensClientesClicked" prefHeight="352.0" prefWidth="457.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="97.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="64.0" text="Codigo" />
           <TableColumn fx:id="tableColumnName" prefWidth="307.0" text="Nome" />

@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pdv.application.Program;
+import pdv.model.entities.Cliente;
 import pdv.model.entities.Item;
 import pdv.model.services.ItemService;
 
@@ -184,6 +185,12 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 
 	@Override
 	public void onSelect(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSelectCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		
 	}

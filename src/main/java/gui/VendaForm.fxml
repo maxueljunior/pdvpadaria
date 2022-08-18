@@ -29,14 +29,14 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNomeCliente" layoutX="20.0" layoutY="149.0" prefHeight="25.0" prefWidth="303.0" />
-      <TextField fx:id="txtTelefoneCliente" layoutX="20.0" layoutY="207.0" prefHeight="25.0" prefWidth="303.0" />
+      <TextField fx:id="txtNomeCliente" layoutX="20.0" layoutY="149.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir nome..." />
+      <TextField fx:id="txtTelefoneCliente" layoutX="20.0" layoutY="207.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir telefone..." />
       <Label layoutX="20.0" layoutY="238.0" text="CPF:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCpfCliente" layoutX="20.0" layoutY="265.0" prefHeight="25.0" prefWidth="303.0" />
+      <TextField fx:id="txtCpfCliente" layoutX="20.0" layoutY="265.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir CPF..." />
       <Button fx:id="btnVendaSemEmissao" layoutX="20.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaSemEmissaoAction" prefHeight="78.0" prefWidth="144.0" text="VENDA SEM NOTA FISCAL" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="btnVendaComEmissao" layoutX="172.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaComEmissaoAction" prefHeight="78.0" prefWidth="144.0" text="VENDA EMISSÃO DA NOTA FISCAL" textAlignment="CENTER" wrapText="true" />
    </children>

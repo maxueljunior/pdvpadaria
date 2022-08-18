@@ -1,17 +1,35 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.listeners.DataChangeListener;
+import gui.util.Alerts;
+import gui.util.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import pdv.model.entities.Cliente;
+import pdv.model.entities.Item;
+import pdv.model.entities.Vendas;
+import pdv.model.services.ClienteService;
+import pdv.model.services.VendasService;
 
-public class VendaFormController implements Initializable{
+public class VendaFormController implements Initializable, DataChangeListener{
 	
 	private Long numeroVendas;
+	
+	private Cliente cliente;
 	
 	@FXML
 	private Label lbCliente;
@@ -43,13 +61,26 @@ public class VendaFormController implements Initializable{
 	}
 
 	@FXML
-	public void onBtnPesquisarClienteAction() {
-		System.out.println(this.numeroVendas);
+	public void onBtnPesquisarClienteAction(ActionEvent event) {
+		
+		Stage parentStage = Utils.currentStage(event);
+		
+		createDialogForm("/gui/PesquisarClientVendaList.fxml", parentStage);
+		
 	}
 
 	@FXML
 	public void onBtnVendaSemEmissaoAction() {
-		System.out.println("venda sem emissao de nfc-e");
+		
+		VendasService service = new VendasService();
+		Vendas v = new Vendas();
+		
+		v = service.findVendasById(numeroVendas);
+		v.setCliente(cliente);
+		
+		service.saveOrUpdate(v);
+		
+		Alerts.showAlert("Venda Concluida", null, "A Venda de numero " + numeroVendas + " foi concluida com sucesso!!", AlertType.CONFIRMATION);
 	}
 	
 	@FXML
@@ -62,8 +93,50 @@ public class VendaFormController implements Initializable{
 		
 	}
 	
+	private void createDialogForm(String absoluteName, Stage parentStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+			PesquisarClientVendaListController controller = loader.getController();
+			controller.setService(new ClienteService());
+			controller.updateTableView();
+			controller.subscribeDataChangeListener(this);
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Painel");
+			dialogStage.setScene(new Scene(pane));
+			dialogStage.setResizable(true);
+			dialogStage.initOwner(parentStage);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			Alerts.showAlert("IOException", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
 	public void initializeFormVendas() {
 		lbCliente.setText("Conclusão de Venda nº " + this.numeroVendas);
+	}
+
+	@Override
+	public void onDataChanged() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSelect(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSelectCliente(Cliente cliente) {
+		this.cliente = cliente;
+		txtNomeCliente.setText(cliente.getName());
+		txtTelefoneCliente.setText(cliente.getTelefone());
 	}
 	
 }
