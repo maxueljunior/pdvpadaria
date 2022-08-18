@@ -6,9 +6,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class VendaFormController implements Initializable{
+	
+	private Long numeroVendas;
+	
+	@FXML
+	private Label lbCliente;
 	
 	@FXML
 	private Button btnPesquisarCliente;
@@ -28,11 +34,19 @@ public class VendaFormController implements Initializable{
 	@FXML
 	private TextField txtCpfCliente;
 	
+	public Long getNumeroVendas() {
+		return numeroVendas;
+	}
+
+	public void setNumeroVendas(Long numeroVendas) {
+		this.numeroVendas = numeroVendas;
+	}
+
 	@FXML
 	public void onBtnPesquisarClienteAction() {
-		System.out.println("pesquisar cliente");
+		System.out.println(this.numeroVendas);
 	}
-	
+
 	@FXML
 	public void onBtnVendaSemEmissaoAction() {
 		System.out.println("venda sem emissao de nfc-e");
@@ -46,6 +60,10 @@ public class VendaFormController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
+	}
+	
+	public void initializeFormVendas() {
+		lbCliente.setText("Conclusão de Venda nº " + this.numeroVendas);
 	}
 	
 }

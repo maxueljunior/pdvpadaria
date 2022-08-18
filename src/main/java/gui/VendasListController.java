@@ -208,7 +208,7 @@ public class VendasListController implements Initializable, DataChangeListener{
 	}
 	
 	@FXML
-	public void btnConcluirAction() {
+	public void btnConcluirAction(ActionEvent event) {
 		
 		ItemService itemService = new ItemService();
 		Item i = new Item();
@@ -223,6 +223,11 @@ public class VendasListController implements Initializable, DataChangeListener{
 		vendas.setTotalVenda(soma);
 		vendas.setVendaStatus(VendaStatus.PAGO);
 		service.saveOrUpdate(vendas);
+		
+		Stage parentStage = Utils.currentStage(event);
+		
+		createDialogForm("/gui/VendaForm.fxml", parentStage);
+		
 	}
 
 	public void btnPesquisarAction(ActionEvent event) {
@@ -305,14 +310,21 @@ public class VendasListController implements Initializable, DataChangeListener{
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
-
-			PesquisaItemVendaListController controller = loader.getController();
-			controller.setItemService(new ItemService());
-			controller.updateTableView();
-			controller.subscribeDataChangeListener(this);
+			
+			
+			if(absoluteName == "/gui/PesquisarItemVendaList.fxml") {
+				PesquisaItemVendaListController controller = loader.getController();
+				controller.setItemService(new ItemService());
+				controller.updateTableView();
+				controller.subscribeDataChangeListener(this);
+			}else if(absoluteName == "/gui/VendaForm.fxml") {
+				VendaFormController controller = loader.getController();
+				controller.setNumeroVendas(vendas.getId());
+				controller.initializeFormVendas();
+			}
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Pesquisar Item no Estoque");
+			dialogStage.setTitle("Painel");
 			dialogStage.setScene(new Scene(pane));
 			dialogStage.setResizable(true);
 			dialogStage.initOwner(parentStage);
