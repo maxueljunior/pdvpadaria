@@ -36,6 +36,9 @@ public class ViewController implements Initializable{
 	private MenuItem menuItemClientes;
 	
 	@FXML
+	private MenuItem menuItemRelatorioVendasClientes;
+	
+	@FXML
 	public void onMenuItemEstoque() {
 		loadView("/gui/EstoqueList.fxml", (EstoqueListController controller) -> {
 			controller.setService(new ItemService());
@@ -63,6 +66,11 @@ public class ViewController implements Initializable{
 			controller.setService(new ClienteService());
 			controller.updateTableView();
 		});
+	}
+	
+	@FXML
+	public void onMenuItemRelatorioVendasClientes() {
+		loadView("/gui/ClientVendasRelatorio.fxml", x -> {});
 	}
 	
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initAction) {

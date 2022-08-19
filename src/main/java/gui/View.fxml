@@ -19,9 +19,14 @@
                         <MenuItem fx:id="menuItemClientes" mnemonicParsing="false" onAction="#onMenuItemClientes" text="Clientes" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="Help">
+                  <Menu mnemonicParsing="false" text="Relatórios">
+                    <items>
+                      <MenuItem fx:id="menuItemRelatorioVendasClientes" mnemonicParsing="false" onAction="#onMenuItemRelatorioVendasClientes" text="Vendas Clientes" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="About" />
                   </items>
                 </Menu>
               </menus>
