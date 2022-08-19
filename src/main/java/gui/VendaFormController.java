@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
 import java.util.ResourceBundle;
 
 import gui.listeners.DataChangeListener;
@@ -81,8 +82,10 @@ public class VendaFormController implements Initializable, DataChangeListener{
 		service.saveOrUpdate(v);
 		
 		Alerts.showAlert("Venda Concluida", null, "A Venda de numero " + numeroVendas + " foi concluida com sucesso!!", AlertType.CONFIRMATION);
+		
 	}
 	
+
 	@FXML
 	public void onBtnVendaComEmissaoAction() {
 		System.out.println("venda com emissão de nfc-e");
