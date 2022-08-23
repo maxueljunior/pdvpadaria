@@ -113,5 +113,7 @@ public class Vendas implements Serializable{
 		Vendas other = (Vendas) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
 
 }

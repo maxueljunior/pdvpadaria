@@ -1,6 +1,6 @@
 package pdv.model.entities.enums;
 
-public enum VendaStatus {
+public enum VendaStatus{
 	
 	AGUARDANDO_PAGAMENTO(1),
 	PAGO(2),

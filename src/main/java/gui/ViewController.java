@@ -70,7 +70,9 @@ public class ViewController implements Initializable{
 	
 	@FXML
 	public void onMenuItemRelatorioVendasClientes() {
-		loadView("/gui/ClientVendasRelatorio.fxml", x -> {});
+		loadView("/gui/ClientVendasRelatorio.fxml", (ClientVendasRelatorioController controller) -> {
+			controller.setService(new VendasService());
+		});
 	}
 	
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initAction) {

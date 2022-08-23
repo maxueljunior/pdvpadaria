@@ -1,13 +1,14 @@
 package pdv.model.services;
 
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import pdv.model.entities.Item;
 import pdv.model.entities.Vendas;
+import pdv.model.entities.enums.VendaStatus;
 
 public class VendasService {
 	
@@ -57,6 +58,21 @@ public class VendasService {
 		em.close();
 		emf.close();
 		return i;
+	}
+	
+	public List<Vendas> findByRelatorio(Long id, Instant dataI, Instant dataF){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		List<Vendas> list = em.createQuery("select a from Vendas a WHERE a.id =:id AND a.data BETWEEN :dataI AND :dataF",Vendas.class)
+				.setParameter("id", id)
+				.setParameter("dataI", dataI)
+				.setParameter("dataF", dataF)
+				.getResultList(); 
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return list;
 	}
 	
 }
