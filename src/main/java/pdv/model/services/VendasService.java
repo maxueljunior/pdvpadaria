@@ -64,8 +64,8 @@ public class VendasService {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		List<Vendas> list = em.createQuery("select a from Vendas a WHERE a.id =:id AND a.data BETWEEN :dataI AND :dataF",Vendas.class)
-				.setParameter("id", id)
+		List<Vendas> list = em.createQuery("select v from Vendas v WHERE v.cliente.id = :id_cliente AND v.data >= :dataI AND v.data <=:dataF",Vendas.class)
+				.setParameter("id_cliente", id)
 				.setParameter("dataI", dataI)
 				.setParameter("dataF", dataF)
 				.getResultList(); 

@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -98,25 +99,15 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 	
 	@FXML
 	public void onBtnRelatorioAction() {
-		/*
+		
 		LocalDate dInicial = dataInicial.getValue();
 		LocalDate dFinal = dataFinal.getValue();
 		
 		Instant instant1 = dInicial.atStartOfDay(ZoneId.systemDefault()).toInstant();
 		Instant instant2 = dFinal.atStartOfDay(ZoneId.systemDefault()).toInstant();
-		*/
 		
+		List<Vendas> list = service.findByRelatorio(cliente.getId(), instant1, instant2);
 		
-		//List<Vendas> list = service.findByRelatorio(cliente.getId(), instant1, instant2);
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneOffset.UTC);
-		String formated;
-		Instant instant3;
-		List<Vendas> list = service.findAll();
-		for(int i =0 ; i<=list.size(); i++) {
-			formated = formatter.format(list.get(i).getData());
-			list.get(i).setData(Instant.parse(formated));
-		}
 		obsList = FXCollections.observableArrayList(list);
 		tableViewVendas.setItems(obsList);
 		tableViewVendas.refresh();
