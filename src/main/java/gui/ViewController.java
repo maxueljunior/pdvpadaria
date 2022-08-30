@@ -72,6 +72,7 @@ public class ViewController implements Initializable{
 	public void onMenuItemRelatorioVendasClientes() {
 		loadView("/gui/ClientVendasRelatorio.fxml", (ClientVendasRelatorioController controller) -> {
 			controller.setService(new VendasService());
+			controller.loadAssociatedObjects();
 		});
 	}
 	

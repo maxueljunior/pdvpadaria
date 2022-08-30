@@ -60,6 +60,22 @@ public class VendasService {
 		return i;
 	}
 	
+	public List<Vendas> findByRelatorio(Long id, Instant dataI, Instant dataF, Integer vendaStatus){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		List<Vendas> list = em.createQuery("select v from Vendas v WHERE v.cliente.id = :id_cliente AND v.data >= :dataI AND v.data <=:dataF AND v.vendaStatus = :status",Vendas.class)
+				.setParameter("id_cliente", id)
+				.setParameter("dataI", dataI)
+				.setParameter("dataF", dataF)
+				.setParameter("status", vendaStatus)
+				.getResultList(); 
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return list;
+	}
+	
 	public List<Vendas> findByRelatorio(Long id, Instant dataI, Instant dataF){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
@@ -75,4 +91,45 @@ public class VendasService {
 		return list;
 	}
 	
+	public List<Vendas> findByRelatorio(Long id){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		List<Vendas> list = em.createQuery("select v from Vendas v WHERE v.cliente.id = :id_cliente",Vendas.class)
+				.setParameter("id_cliente", id)
+				.getResultList(); 
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return list;
+	}
+	
+	public List<Vendas> findByRelatorio(Instant dataI, Instant dataF){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		List<Vendas> list = em.createQuery("select v from Vendas v WHERE v.data >= :dataI AND v.data <=:dataF",Vendas.class)
+				.setParameter("dataI", dataI)
+				.setParameter("dataF", dataF)
+				.getResultList(); 
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return list;
+	}
+	
+	public List<Vendas> findByRelatorio(Instant dataI, Instant dataF, Integer vendaStatus){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		List<Vendas> list = em.createQuery("select v from Vendas v WHERE v.data >= :dataI AND v.data <=:dataF AND v.vendaStatus = :status",Vendas.class)
+				.setParameter("dataI", dataI)
+				.setParameter("dataF", dataF)
+				.setParameter("status", vendaStatus)
+				.getResultList(); 
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		return list;
+	}
 }
