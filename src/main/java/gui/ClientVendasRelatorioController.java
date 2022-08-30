@@ -30,6 +30,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -250,6 +252,16 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 		list.add(VendaStatus.CANCELADO);
 		obsListStatus = FXCollections.observableArrayList(list);
 		comboBoxStatus.setItems(obsListStatus);
+	}
+	
+	@FXML
+	public void pegandoItemPorVendas(KeyEvent event) {
+		if(event.getCode() == KeyCode.F1) {
+			int i = tableViewVendas.getSelectionModel().getSelectedIndex();
+
+			Vendas v = (Vendas) tableViewVendas.getItems().get(i);
+			System.out.println(v.getId());
+		}
 	}
 
 	private void initializeComboBoxDepartment() {

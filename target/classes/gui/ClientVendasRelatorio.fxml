@@ -46,10 +46,10 @@
                </font>
             </Label>
             <ComboBox fx:id="comboBoxStatus" layoutX="20.0" layoutY="206.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="206.0" />
-            <Button fx:id="btnRelatorio" layoutX="692.0" layoutY="239.0" mnemonicParsing="false" onAction="#onBtnRelatorioAction" prefHeight="25.0" prefWidth="174.0" text="Buscar Relatório" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="239.0" />
+            <Button fx:id="btnRelatorio" layoutX="616.0" layoutY="212.0" mnemonicParsing="false" onAction="#onBtnRelatorioAction" prefHeight="25.0" prefWidth="174.0" text="Buscar Relatório" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="212.0" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tableViewVendas" prefHeight="454.0" prefWidth="880.0">
+      <TableView fx:id="tableViewVendas" onKeyPressed="#pegandoItemPorVendas" prefHeight="454.0" prefWidth="880.0">
         <columns>
           <TableColumn fx:id="tableColumnIdVendas" prefWidth="109.0" text="ID Vendas" />
           <TableColumn fx:id="tableColumnNomeCliente" prefWidth="348.0" text="Nome Cliente" />

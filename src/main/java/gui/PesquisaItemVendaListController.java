@@ -98,6 +98,7 @@ public class PesquisaItemVendaListController implements Initializable{
 
 		Item v = (Item) tableViewItem.getItems().get(i);
 		notifyDataChangeListeners(v);
+		
 	}
 	
 	@FXML
