@@ -46,7 +46,7 @@ public class VendasListController implements Initializable, DataChangeListener{
 
 	private VendaItemService serviceItem;
 
-	private Vendas vendas = new Vendas(null,null,null,Instant.now(),null);
+	private Vendas vendas = new Vendas(null,null,VendaStatus.CANCELADO,Instant.now(),null);
 
 	private Double soma = 0.00;
 
