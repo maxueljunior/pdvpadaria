@@ -115,7 +115,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 			Instant instant2;
 
 			if (dataInicial.getValue() != null && dataFinal.getValue() != null
-					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1) {
+					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1 && cliente == null) {
 
 				dInicial = dataInicial.getValue();
 				dFinal = dataFinal.getValue();
@@ -128,8 +128,10 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				obsList = FXCollections.observableArrayList(list);
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
+				System.out.println("primeiro IF");
+
 			} else if (dataInicial.getValue() != null && dataFinal.getValue() != null
-					&& comboBoxStatus.getSelectionModel().getSelectedIndex() != -1) {
+					&& comboBoxStatus.getSelectionModel().getSelectedIndex() != -1 && cliente == null) {
 
 				dInicial = dataInicial.getValue();
 				dFinal = dataFinal.getValue();
@@ -143,7 +145,9 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				obsList = FXCollections.observableArrayList(list);
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
-			} else if (dataInicial.getValue() != null && dataFinal.getValue() != null && cliente.getId() != null
+				System.out.println("segundo IF");
+
+			} else if (dataInicial.getValue() != null && dataFinal.getValue() != null && cliente != null
 					&& comboBoxStatus.getSelectionModel().getSelectedIndex() != -1) {
 
 				dInicial = dataInicial.getValue();
@@ -158,7 +162,10 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				obsList = FXCollections.observableArrayList(list);
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
-			} else if (dataInicial.getValue() != null && dataFinal.getValue() != null && cliente.getId() != null) {
+				System.out.println("terceiro IF");
+
+			} else if (dataInicial.getValue() != null && dataFinal.getValue() != null && cliente != null
+					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1) {
 
 				dInicial = dataInicial.getValue();
 				dFinal = dataFinal.getValue();
@@ -171,14 +178,26 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				obsList = FXCollections.observableArrayList(list);
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
-			} else if (cliente.getId() != null) {
+				System.out.println("quarto IF");
+
+			} else if (cliente != null && dataInicial.getValue() == null && dataFinal.getValue() == null
+					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1) {
 				List<Vendas> list = service.findByRelatorio(cliente.getId());
 
 				obsList = FXCollections.observableArrayList(list);
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
+				System.out.println("quinto IF");
+			}else if(cliente == null && dataInicial.getValue() == null && dataFinal.getValue() == null
+					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1) {
+				List<Vendas> list = service.findAll();
 
+				obsList = FXCollections.observableArrayList(list);
+				tableViewVendas.setItems(obsList);
+				tableViewVendas.refresh();
+				System.out.println("sexto IF");
 			}
+			
 			cliente = null;
 			txtNomeCliente.setText("");
 			dataFinal.setValue(null);
@@ -186,7 +205,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 			comboBoxStatus.getSelectionModel().select(-1);
 		} catch (NullPointerException e) {
 			Alerts.showAlert("Erro ao buscar relatório", null, e.getMessage(), AlertType.ERROR);
-		} catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			Alerts.showAlert("Erro ao buscar relatório", null, e.getMessage(), AlertType.ERROR);
 		}
 
@@ -253,10 +272,10 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 		obsListStatus = FXCollections.observableArrayList(list);
 		comboBoxStatus.setItems(obsListStatus);
 	}
-	
+
 	@FXML
 	public void pegandoItemPorVendas(KeyEvent event) {
-		if(event.getCode() == KeyCode.F1) {
+		if (event.getCode() == KeyCode.F1) {
 			int i = tableViewVendas.getSelectionModel().getSelectedIndex();
 
 			Vendas v = (Vendas) tableViewVendas.getItems().get(i);
