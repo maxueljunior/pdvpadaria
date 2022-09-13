@@ -5,26 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="431.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EstoqueListController">
+<VBox prefHeight="653.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EstoqueListController">
    <children>
-      <Label text="Estoque">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <padding>
-            <Insets left="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <items>
-          <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" text="Novo" />
-        </items>
-      </ToolBar>
-      <TableView fx:id="tableViewItem" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="346.0" prefWidth="880.0" style="-fx-background-color: #4169E1;">
+         <children>
+            <Label prefHeight="50.0" prefWidth="716.0" style="-fx-background-color: #00008B;" text="Estoque" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" top="15.0" />
+               </padding>
+            </Label>
+          <Button fx:id="btnSalvar" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#onBtnSalvarAction" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #0000CD;" text="Novo Item" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableViewItem" prefHeight="239.0" prefWidth="716.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Codigo" />
           <TableColumn fx:id="tableColumnName" prefWidth="110.0" text="Nome Produto" />
