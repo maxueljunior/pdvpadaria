@@ -134,8 +134,8 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 	private void initEditButtons() {
 		tableColumnEdit.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnEdit.setCellFactory(param -> new TableCell<Item, Item>() {
-			private final Button button = new Button("edit");
-
+			private final Button button = new Button("Atualizar");
+			
 			@Override
 			protected void updateItem(Item obj, boolean empty) {
 				super.updateItem(obj, empty);
@@ -145,6 +145,10 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 				}
 				setGraphic(button);
 				button.setOnAction(event -> createDialogForm(obj, "/gui/ItemForm.fxml", Utils.currentStage(event)));
+				button.setStyle("-fx-background-color: #0000CD;"
+						+ "-fx-text-fill: white;"
+						+ "-fx-font-size: 12px;"
+						+ "-fx-font-weight: bold");
 			}
 		});
 	}
@@ -152,7 +156,7 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 	private void initRemoveButtons() {
 		tableColumnRemove.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnRemove.setCellFactory(param -> new TableCell<Item, Item>() {
-			private final Button button = new Button("remove");
+			private final Button button = new Button("Deletar");
 
 			@Override
 			protected void updateItem(Item obj, boolean empty) {
@@ -163,6 +167,10 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 				}
 				setGraphic(button);
 				button.setOnAction(event -> removeEntity(obj));
+				button.setStyle("-fx-background-color: #0000CD;"
+						+ "-fx-text-fill: white;"
+						+ "-fx-font-size: 12px;"
+						+ "-fx-font-weight: bold");
 			}
 		});
 	}
