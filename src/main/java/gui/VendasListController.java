@@ -137,6 +137,8 @@ public class VendasListController implements Initializable, DataChangeListener{
 		Double quantidade = Utils.tryParseToDouble(aux);
 		soma = soma + (venda.getPreco() * quantidade);
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
+		
+		
 	}
 	
 	@FXML
@@ -175,6 +177,7 @@ public class VendasListController implements Initializable, DataChangeListener{
 			}
 		}
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
+		tableViewVendaItem.getSelectionModel().clearSelection();
 	}
 	
 	@FXML
@@ -205,6 +208,8 @@ public class VendasListController implements Initializable, DataChangeListener{
 		soma = soma - somaAux;
 		
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
+		
+		tableViewVendaItem.getSelectionModel().clearSelection();
 
 	}
 	

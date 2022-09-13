@@ -22,6 +22,8 @@ public class Program extends Application {
 			 mainScene = new Scene(scrollPane);
 			 primaryStage.setScene(mainScene);
 			 primaryStage.setTitle("PDV Padaria");
+			 //mainScene.getStylesheets().add(getClass().getResource("view.css").toExternalForm());
+			 primaryStage.setMaximized(true);
 			 primaryStage.show();
 			 
 		} catch(Exception e) {

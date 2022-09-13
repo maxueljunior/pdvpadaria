@@ -58,6 +58,9 @@ public class ClientListController implements Initializable {
 	private Button btnDeletar;
 	
 	@FXML
+	private Button btnInformacoes;
+	
+	@FXML
 	private Label lbNomeError;
 
 	@FXML
@@ -123,6 +126,14 @@ public class ClientListController implements Initializable {
 		updateTableView();
 		tableViewCliente.refresh();
 
+		txtId.setText("");
+		txtNome.setText("");
+		txtTelefone.setText("");
+		tableViewCliente.getSelectionModel().clearSelection();
+	}
+	
+	@FXML
+	public void btnLimparDados() {
 		txtId.setText("");
 		txtNome.setText("");
 		txtTelefone.setText("");

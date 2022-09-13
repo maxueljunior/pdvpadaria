@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="420.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VendaFormController">
+<AnchorPane prefHeight="420.0" prefWidth="340.0" style="-fx-background-color: #4169E1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VendaFormController">
    <children>
-      <Label fx:id="lbCliente" layoutX="21.0" layoutY="23.0" text="Conclusão de Venda" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="lbCliente" layoutX="21.0" layoutY="11.0" prefWidth="228.0" style="-fx-background-color: #00008B;" text="Conclusão de Venda" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
+         <padding>
+            <Insets bottom="5.0" left="20.0" top="30.0" />
+         </padding>
       </Label>
-      <Label layoutX="20.0" layoutY="83.0" text="MARCAR VENDA" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="83.0">
+      <Label layoutX="20.0" layoutY="83.0" text="MARCAR VENDA" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="83.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnPesquisarCliente" layoutX="172.0" layoutY="83.0" mnemonicParsing="false" onAction="#onBtnPesquisarClienteAction" prefHeight="27.0" prefWidth="144.0" text="PESQUISAR CLIENTES" />
-      <Label layoutX="20.0" layoutY="122.0" text="Cliente:">
+      <Button fx:id="btnPesquisarCliente" layoutX="172.0" layoutY="83.0" mnemonicParsing="false" onAction="#onBtnPesquisarClienteAction" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="PESQUISAR CLIENTES" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="20.0" layoutY="122.0" text="Cliente:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="180.0" text="Telefone:">
+      <Label layoutX="20.0" layoutY="180.0" text="Telefone:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="txtNomeCliente" layoutX="20.0" layoutY="149.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir nome..." />
       <TextField fx:id="txtTelefoneCliente" layoutX="20.0" layoutY="207.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir telefone..." />
-      <Label layoutX="20.0" layoutY="238.0" text="CPF:">
+      <Label layoutX="20.0" layoutY="238.0" text="CPF:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="txtCpfCliente" layoutX="20.0" layoutY="265.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir CPF..." />
-      <Button fx:id="btnVendaSemEmissao" layoutX="20.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaSemEmissaoAction" prefHeight="78.0" prefWidth="144.0" text="VENDA SEM NOTA FISCAL" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="btnVendaComEmissao" layoutX="172.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaComEmissaoAction" prefHeight="78.0" prefWidth="144.0" text="VENDA EMISSÃO DA NOTA FISCAL" textAlignment="CENTER" wrapText="true" />
+      <Button id="btn1" fx:id="btnVendaSemEmissao" layoutX="20.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaSemEmissaoAction" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA SEM NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnVendaComEmissao" layoutX="172.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaComEmissaoAction" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA EMISSÃO DA NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -6,13 +6,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ViewController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ViewController">
    <content>
-      <VBox prefHeight="800" prefWidth="798.0" style="-fx-background-color: #4169E1;">
+      <VBox prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #4169E1;">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Menu">
+                <Menu mnemonicParsing="false" style="blackground-color: white;" text="Menu">
                   <items>
                     <MenuItem fx:id="menuItemEstoque" mnemonicParsing="false" onAction="#onMenuItemEstoque" text="Estoque" />
                         <MenuItem fx:id="menuItemVendas" mnemonicParsing="false" onAction="#onMenuItemVendas" text="Vendas" />
