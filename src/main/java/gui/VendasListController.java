@@ -138,7 +138,10 @@ public class VendasListController implements Initializable, DataChangeListener{
 		soma = soma + (venda.getPreco() * quantidade);
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 		
-		
+		txtIdProduto.setText("");
+		txtQuantidade.setText("");
+		txtPreco.setText("");
+		txtDescricao.setText("");
 	}
 	
 	@FXML
@@ -178,6 +181,12 @@ public class VendasListController implements Initializable, DataChangeListener{
 		}
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 		tableViewVendaItem.getSelectionModel().clearSelection();
+		
+		txtIdProduto.setText("");
+		txtQuantidade.setText("");
+		txtPreco.setText("");
+		txtDescricao.setText("");
+		
 	}
 	
 	@FXML
@@ -210,6 +219,11 @@ public class VendasListController implements Initializable, DataChangeListener{
 		lbTotalVenda.setText("R$ " + String.valueOf(soma));
 		
 		tableViewVendaItem.getSelectionModel().clearSelection();
+		
+		txtIdProduto.setText("");
+		txtQuantidade.setText("");
+		txtPreco.setText("");
+		txtDescricao.setText("");
 
 	}
 	
