@@ -167,7 +167,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				//FileOutputStream fileOut = new FileOutputStream("Relatorio.xls");
 				
 				File desktopDir = new File(System.getProperty("user.home"), "Desktop");
-				System.out.println(desktopDir.getPath() + " " + desktopDir.exists());
+				//System.out.println(desktopDir.getPath() + " " + desktopDir.exists());
 				
 				FileOutputStream fileOut =  new FileOutputStream(new File(desktopDir, "Relatorio.xls"));
 				
@@ -175,11 +175,11 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 					workbook.write(fileOut);
 					fileOut.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					Alerts.showAlert("Error", null, e.getMessage(), AlertType.ERROR);
 				}
 			} catch (FileNotFoundException e) {
 
-				e.printStackTrace();
+				Alerts.showAlert("Error", null, e.getMessage(), AlertType.ERROR);
 
 			}
 		} catch (NullPointerException e) {
