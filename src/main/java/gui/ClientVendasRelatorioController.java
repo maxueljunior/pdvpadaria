@@ -1,5 +1,8 @@
 package gui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
@@ -8,6 +11,10 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
@@ -89,6 +96,9 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 	@FXML
 	private Button btnRelatorio;
 
+	@FXML
+	private Button btnExcel;
+
 	private ObservableList<Vendas> obsList;
 
 	private ObservableList<VendaStatus> obsListStatus;
@@ -102,6 +112,82 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 		Stage parentStage = Utils.currentStage(event);
 
 		createDialogForm("/gui/PesquisarClientVendaList.fxml", parentStage);
+	}
+
+	@FXML
+	public void onBtnExcelAction() {
+
+		HSSFWorkbook workbook = new HSSFWorkbook();
+
+		HSSFSheet sheet = workbook.createSheet("Relatório de Vendas");
+
+		HSSFRow header = sheet.createRow(0);
+
+		header.createCell(0).setCellValue("ID Vendas");
+		header.createCell(1).setCellValue("Nome Cliente");
+		header.createCell(2).setCellValue("Total da Venda (R$)");
+		header.createCell(3).setCellValue("Dia da Venda (formato americano)");
+		header.createCell(4).setCellValue("Situação da Venda");
+
+		sheet.autoSizeColumn(0);
+		sheet.autoSizeColumn(1);
+		sheet.autoSizeColumn(2);
+		sheet.autoSizeColumn(3);
+		sheet.autoSizeColumn(4);
+
+		sheet.setColumnWidth(1, 256 * 25);
+
+		try {
+			int i = 1;
+
+			for (Vendas lista : obsList) {
+				HSSFRow row = sheet.createRow(i);
+				
+				row.createCell(0).setCellValue(lista.getId());
+				
+				if(lista.getCliente() == null) {
+					row.createCell(1).setCellValue("N/I");
+				}else {
+					row.createCell(1).setCellValue(lista.getCliente().getName());
+				}
+				
+				if(lista.getTotalVenda() == null) {
+					row.createCell(2).setCellValue("N/I");
+				}else {
+					row.createCell(2).setCellValue(lista.getTotalVenda());
+				}
+				
+				row.createCell(3).setCellValue(lista.getData().toString());
+				row.createCell(4).setCellValue(lista.getVendaStatus().toString());
+				i++;
+			}
+
+			try {
+
+				//FileOutputStream fileOut = new FileOutputStream("Relatorio.xls");
+				
+				File desktopDir = new File(System.getProperty("user.home"), "Desktop");
+				System.out.println(desktopDir.getPath() + " " + desktopDir.exists());
+				
+				FileOutputStream fileOut =  new FileOutputStream(new File(desktopDir, "Relatorio.xls"));
+				
+				try {
+					workbook.write(fileOut);
+					fileOut.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} catch (FileNotFoundException e) {
+
+				e.printStackTrace();
+
+			}
+		} catch (NullPointerException e) {
+			Alerts.showAlert("Relatório Vazio", "Relatório está vazio, sendo assim não é possivel gerar o excel", e.getMessage(), AlertType.ERROR);
+		}
+		
+		Alerts.showAlert("Sucesso ao transferir Relatório", "O Relatório foi gerado com sucesso e está na sua area de trabalho (Desktop)!!", null, AlertType.INFORMATION);
+
 	}
 
 	@FXML
@@ -188,7 +274,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				tableViewVendas.setItems(obsList);
 				tableViewVendas.refresh();
 				System.out.println("quinto IF");
-			}else if(cliente == null && dataInicial.getValue() == null && dataFinal.getValue() == null
+			} else if (cliente == null && dataInicial.getValue() == null && dataFinal.getValue() == null
 					&& comboBoxStatus.getSelectionModel().getSelectedIndex() == -1) {
 				List<Vendas> list = service.findAll();
 
@@ -197,7 +283,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 				tableViewVendas.refresh();
 				System.out.println("sexto IF");
 			}
-			
+
 			cliente = null;
 			txtNomeCliente.setText("");
 			dataFinal.setValue(null);
