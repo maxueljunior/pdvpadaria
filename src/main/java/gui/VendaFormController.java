@@ -142,4 +142,49 @@ public class VendaFormController implements Initializable, DataChangeListener{
 		txtTelefoneCliente.setText(cliente.getTelefone());
 	}
 	
+	@FXML
+	public void mouseEntraPesquisar() {
+		btnPesquisarCliente.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiPesquisar() {
+		btnPesquisarCliente.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraSemNota() {
+		btnVendaSemEmissao.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiSemNota() {
+		btnVendaSemEmissao.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraComNota() {
+		btnVendaComEmissao.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiComNota() {
+		btnVendaComEmissao.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
 }

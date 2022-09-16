@@ -110,4 +110,19 @@ public class PesquisarClientVendaListController implements Initializable{
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 	}
+	
+	@FXML
+	public void mouseEntraPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.hibernate.internal.build.AllowSysOut;
+
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -149,6 +151,19 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 						+ "-fx-text-fill: white;"
 						+ "-fx-font-size: 12px;"
 						+ "-fx-font-weight: bold");
+				button.setOnMouseEntered(event -> {
+					button.setStyle("-fx-background-color: C0C0C0;"
+							+"-fx-text-fill:#0000CD;"
+							+"-fx-font-size:12px;"
+							+"-fx-font-weight: bold");
+				});
+				
+				button.setOnMouseExited(event -> {
+					button.setStyle("-fx-background-color: #0000CD;"
+							+"-fx-text-fill:white;"
+							+"-fx-font-size:12px;"
+							+"-fx-font-weight: bold");
+				});
 			}
 		});
 	}
@@ -171,6 +186,20 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 						+ "-fx-text-fill: white;"
 						+ "-fx-font-size: 12px;"
 						+ "-fx-font-weight: bold");
+				
+				button.setOnMouseEntered(event -> {
+					button.setStyle("-fx-background-color: C0C0C0;"
+							+"-fx-text-fill:#0000CD;"
+							+"-fx-font-size:12px;"
+							+"-fx-font-weight: bold");
+				});
+				
+				button.setOnMouseExited(event -> {
+					button.setStyle("-fx-background-color: #0000CD;"
+							+"-fx-text-fill:white;"
+							+"-fx-font-size:12px;"
+							+"-fx-font-weight: bold");
+				});
 			}
 		});
 	}
@@ -201,6 +230,21 @@ public class EstoqueListController implements Initializable, DataChangeListener 
 	public void onSelectCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@FXML
+	public void mouseEntraNovo() {
+		btnSalvar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiNovo() {
+		btnSalvar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
 	}
 
 }

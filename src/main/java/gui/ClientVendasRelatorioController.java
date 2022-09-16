@@ -106,6 +106,51 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 	public void setService(VendasService service) {
 		this.service = service;
 	}
+	
+	@FXML
+	public void mouseEntraPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraRelatorio() {
+		btnRelatorio.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiRelatorio() {
+		btnRelatorio.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraExcel() {
+		btnExcel.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiExcel() {
+		btnExcel.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
 
 	@FXML
 	public void onBtnPesquisarAction(ActionEvent event) {

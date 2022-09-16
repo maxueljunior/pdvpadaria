@@ -175,5 +175,35 @@ public class ItemFormController implements Initializable {
 		}
 
 	}
+	
+	@FXML
+	public void mouseEntraSalvar() {
+		btnSalvar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiSalvar() {
+		btnSalvar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraCancelar() {
+		btnCancelar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiCancelar() {
+		btnCancelar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:12px;"
+				+"-fx-font-weight: bold");
+	}
 
 }

@@ -22,7 +22,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnPesquisarCliente" layoutX="172.0" layoutY="83.0" mnemonicParsing="false" onAction="#onBtnPesquisarClienteAction" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="PESQUISAR CLIENTES" textFill="WHITE">
+      <Button fx:id="btnPesquisarCliente" layoutX="172.0" layoutY="83.0" mnemonicParsing="false" onAction="#onBtnPesquisarClienteAction" onMouseEntered="#mouseEntraPesquisar" onMouseExited="#mouseSaiPesquisar" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="PESQUISAR CLIENTES" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -44,11 +44,11 @@
          </font>
       </Label>
       <TextField fx:id="txtCpfCliente" layoutX="20.0" layoutY="265.0" prefHeight="25.0" prefWidth="303.0" promptText="Inserir CPF..." />
-      <Button id="btn1" fx:id="btnVendaSemEmissao" layoutX="20.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaSemEmissaoAction" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA SEM NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button id="btn1" fx:id="btnVendaSemEmissao" layoutX="20.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaSemEmissaoAction" onMouseEntered="#mouseEntraSemNota" onMouseExited="#mouseSaiSemNota" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA SEM NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnVendaComEmissao" layoutX="172.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaComEmissaoAction" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA EMISSÃO DA NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Button fx:id="btnVendaComEmissao" layoutX="172.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBtnVendaComEmissaoAction" onMouseEntered="#mouseEntraComNota" onMouseExited="#mouseSaiComNota" prefHeight="78.0" prefWidth="144.0" style="-fx-background-color: #0000cd;" text="VENDA EMISSÃO DA NOTA FISCAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

@@ -375,6 +375,78 @@ public class VendasListController implements Initializable, DataChangeListener{
 		
 	}
 	
+	@FXML
+	public void mouseEntraPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiPesquisar() {
+		btnPesquisar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
 	
-
+	@FXML
+	public void mouseEntraAdd() {
+		btnAdicionarItem.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiAdd() {
+		btnAdicionarItem.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraAtt() {
+		btnAtualizar.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiAtt() {
+		btnAtualizar.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraRemove() {
+		btnDelete.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiRemove() {
+		btnDelete.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	
+	@FXML
+	public void mouseEntraFinalizar() {
+		btnConcluir.setStyle("-fx-background-color: white;"
+				+"-fx-text-fill:#0000CD;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
+	@FXML
+	public void mouseSaiFinalizar() {
+		btnConcluir.setStyle("-fx-background-color: #0000CD;"
+				+"-fx-text-fill:white;"
+				+"-fx-font-size:14px;"
+				+"-fx-font-weight: bold");
+	}
 }

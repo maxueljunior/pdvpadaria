@@ -48,26 +48,29 @@
                </font>
             </Label>
             <TextField fx:id="txtId" disable="true" layoutX="162.0" layoutY="398.0" prefHeight="25.0" prefWidth="90.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="168.0" />
-            <TextField fx:id="txtNome" layoutX="168.0" layoutY="425.0" prefHeight="25.0" prefWidth="365.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="168.0" />
-            <TextField fx:id="txtTelefone" layoutX="168.0" layoutY="452.0" prefHeight="25.0" prefWidth="222.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="168.0" />
-            <Button fx:id="btnSalvar" layoutX="20.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnSalvarAction" prefHeight="48.0" prefWidth="140.0" style="-fx-background-color: #0000CD;" text="ADICIONAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="20.0">
+            <TextField fx:id="txtNome" layoutX="168.0" layoutY="425.0" prefHeight="25.0" prefWidth="365.0" promptText="Digite aqui o nome..." AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="168.0" />
+            <TextField fx:id="txtTelefone" layoutX="168.0" layoutY="452.0" prefHeight="25.0" prefWidth="222.0" promptText="Digite aqui o telefone..." AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="168.0" />
+            <Button fx:id="btnSalvar" layoutX="20.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnSalvarAction" onMouseEntered="#mouseEntraAdd" onMouseExited="#mouseSaiAdd" prefHeight="48.0" prefWidth="140.0" style="-fx-background-color: #0000CD;" text="ADICIONAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="20.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="btnAtualizar" layoutX="168.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnAtualizarAction" prefHeight="48.0" prefWidth="140.0" style="-fx-background-color: #0000CD;" text="ATUALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="168.0">
+            <Button fx:id="btnAtualizar" layoutX="168.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnAtualizarAction" onMouseEntered="#mouseEntraAtt" onMouseExited="#mouseSaiAtt" prefHeight="48.0" prefWidth="140.0" style="-fx-background-color: #0000CD;" text="ATUALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="168.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="btnDeletar" layoutX="313.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnDeletarAction" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #0000CD;" text="DELETAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="313.0">
+            <Button fx:id="btnDeletar" layoutX="313.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnDeletarAction" onMouseEntered="#mouseEntraDelete" onMouseExited="#mouseSaiDelete" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #0000CD;" text="DELETAR" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="313.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label fx:id="lbNomeError" layoutX="533.0" layoutY="503.0" prefHeight="25.0" prefWidth="214.0" textFill="RED" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="503.0">
+            <Label fx:id="lbNomeError" layoutX="533.0" layoutY="503.0" prefHeight="25.0" prefWidth="214.0" textFill="#c9e312" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="503.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="lbTelefoneError" layoutX="390.0" layoutY="530.0" prefHeight="25.0" prefWidth="195.0" textFill="RED" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="530.0" />
-            <Button fx:id="btnInformacoes" layoutX="471.0" layoutY="575.0" mnemonicParsing="false" onAction="#btnLimparDados" prefHeight="48.0" prefWidth="195.0" style="-fx-background-color: #0000CD;" text="LIMPAR DADOS PREENCHIDOS" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="471.0">
+            <Label fx:id="lbTelefoneError" layoutX="390.0" layoutY="530.0" prefHeight="25.0" prefWidth="195.0" textFill="#c9e312" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="530.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="btnInformacoes" layoutX="471.0" layoutY="575.0" mnemonicParsing="false" onAction="#btnLimparDados" onMouseEntered="#mouseEntraLimpar" onMouseExited="#mouseSaiLimpar" prefHeight="48.0" prefWidth="195.0" style="-fx-background-color: #0000CD;" text="LIMPAR DADOS PREENCHIDOS" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="471.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

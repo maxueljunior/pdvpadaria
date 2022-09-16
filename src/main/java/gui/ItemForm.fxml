@@ -43,10 +43,10 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <TextField fx:id="txtId" GridPane.columnIndex="1" />
-            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtPreco" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtId" promptText="Digite o codigo do produto..." GridPane.columnIndex="1" />
+            <TextField fx:id="txtName" promptText="Digite a descrição do produto..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtQuantidade" promptText="Digite a quantidade..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPreco" promptText="Digite o preço no formato 0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lbErrorId" textFill="#c9e312" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -65,11 +65,11 @@
                </font></Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" prefHeight="48.0" prefWidth="116.0" style="-fx-background-color: #0000CD;" text="Salvar" textFill="WHITE">
+                  <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" onMouseEntered="#mouseEntraSalvar" onMouseExited="#mouseSaiSalvar" prefHeight="48.0" prefWidth="116.0" style="-fx-background-color: #0000CD;" text="Salvar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onBtnCancelAction" prefHeight="45.0" prefWidth="133.0" style="-fx-background-color: #0000CD;" text="Cancelar" textFill="WHITE">
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onBtnCancelAction" onMouseEntered="#mouseEntraCancelar" onMouseExited="#mouseSaiCancelar" prefHeight="45.0" prefWidth="133.0" style="-fx-background-color: #0000CD;" text="Cancelar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
