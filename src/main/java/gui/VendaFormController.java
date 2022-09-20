@@ -93,7 +93,6 @@ public class VendaFormController implements Initializable, DataChangeListener{
 		Stage stage = (Stage) btnVendaSemEmissao.getScene().getWindow();
 		stage.close();
 		
-		
 	}
 	
 	private void onMenuItemVendas() {
