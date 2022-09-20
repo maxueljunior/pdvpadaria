@@ -39,7 +39,7 @@
             </MenuBar>
             <AnchorPane prefHeight="826.0" prefWidth="800.0">
                <children>
-                  <Button fx:id="btnEstoque" layoutX="24.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBtnEstoqueAction" prefHeight="120.0" prefWidth="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
+                  <Button fx:id="btnEstoque" layoutX="24.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBtnEstoqueAction" onMouseEntered="#mouseEntraEstoque" onMouseExited="#mouseSaiEstoque" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: #4169E1;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
                      <graphic>
                         <ImageView fx:id="imgEstoque" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,9 +58,9 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnVendas" layoutX="245.0" layoutY="60.0" mnemonicParsing="false" onAction="#onBtnVendasAction" prefHeight="120.0" prefWidth="180.0" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="60.0">
+                  <Button fx:id="btnVendas" layoutX="245.0" layoutY="60.0" mnemonicParsing="false" onAction="#onBtnVendasAction" onMouseEntered="#mouseEntraVendas" onMouseExited="#mouseSaiVendas" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: #4169E1;" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="60.0">
                      <graphic>
-                        <ImageView fx:id="imgVendas" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgVendas" fitHeight="150.0" fitWidth="200.0" onMouseEntered="#mouseEntraVendas" onMouseExited="#mouseSaiVendas" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pdv.imagens/compras-online.png" />
                            </image>
@@ -72,7 +72,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnClientes" layoutX="465.0" layoutY="60.0" mnemonicParsing="false" onAction="#onBtnClientesAction" prefHeight="120.0" prefWidth="180.0" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="60.0">
+                  <Button fx:id="btnClientes" layoutX="465.0" layoutY="60.0" mnemonicParsing="false" onAction="#onBtnClientesAction" onMouseEntered="#mouseEntraClientes" onMouseExited="#mouseSaiClientes" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: #4169E1;" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="60.0">
                      <graphic>
                         <ImageView fx:id="imgClientes" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,7 +86,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnRelatorio" layoutX="28.0" layoutY="290.0" mnemonicParsing="false" onAction="#onBtnRelatorioAction" prefHeight="120.0" prefWidth="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="290.0">
+                  <Button fx:id="btnRelatorio" layoutX="28.0" layoutY="290.0" mnemonicParsing="false" onAction="#onBtnRelatorioAction" onMouseEntered="#mouseEntraRelatorio" onMouseExited="#mouseSaiRelatorio" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: #4169E1;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="290.0">
                      <graphic>
                         <ImageView fx:id="imgRelatorio" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -100,7 +100,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnAjuda" layoutX="20.0" layoutY="514.0" mnemonicParsing="false" onAction="#onBtnAjudaAction" prefHeight="120.0" prefWidth="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="514.0">
+                  <Button fx:id="btnAjuda" layoutX="20.0" layoutY="514.0" mnemonicParsing="false" onAction="#onBtnAjudaAction" onMouseEntered="#mouseEntraAjuda" onMouseExited="#mouseSaiAjuda" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: #4169E1;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="514.0">
                      <graphic>
                         <ImageView fx:id="imgAjuda" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>

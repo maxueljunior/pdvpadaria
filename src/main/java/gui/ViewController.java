@@ -158,5 +158,50 @@ public class ViewController implements Initializable{
 	@Override
 	public void initialize(URL uri, ResourceBundle rb) {
 	}
+	
+	@FXML
+	public void mouseEntraEstoque() {
+		btnEstoque.setStyle("-fx-background-color: white");
+	}
+	@FXML
+	public void mouseSaiEstoque() {
+		btnEstoque.setStyle("-fx-background-color: #4169E1");
+	}
+	
+	@FXML
+	public void mouseEntraVendas() {
+		btnVendas.setStyle("-fx-background-color: white");
+	}
+	@FXML
+	public void mouseSaiVendas() {
+		btnVendas.setStyle("-fx-background-color: #4169E1");
+	}
+	
+	@FXML
+	public void mouseEntraClientes() {
+		btnClientes.setStyle("-fx-background-color: white");
+	}
+	@FXML
+	public void mouseSaiClientes() {
+		btnClientes.setStyle("-fx-background-color: #4169E1");
+	}
+	
+	@FXML
+	public void mouseEntraRelatorio() {
+		btnRelatorio.setStyle("-fx-background-color: white");
+	}
+	@FXML
+	public void mouseSaiRelatorio() {
+		btnRelatorio.setStyle("-fx-background-color: #4169E1");
+	}
+	
+	@FXML
+	public void mouseEntraAjuda() {
+		btnAjuda.setStyle("-fx-background-color: white");
+	}
+	@FXML
+	public void mouseSaiAjuda() {
+		btnAjuda.setStyle("-fx-background-color: #4169E1");
+	}
 
 }
