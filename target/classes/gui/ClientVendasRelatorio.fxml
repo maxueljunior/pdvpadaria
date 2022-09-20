@@ -40,19 +40,19 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dataInicial" layoutX="20.0" layoutY="145.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="145.0" />
+            <DatePicker fx:id="dataInicial" layoutX="20.0" layoutY="145.0" promptText="Selecione data inicial..." AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="145.0" />
             <Label layoutX="224.0" layoutY="120.0" text="Data Final" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dataFinal" layoutX="224.0" layoutY="145.0" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="145.0" />
+            <DatePicker fx:id="dataFinal" layoutX="224.0" layoutY="145.0" promptText="Selecione data final..." AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="145.0" />
             <Label layoutX="20.0" layoutY="181.0" text="Status da Venda" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="181.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBoxStatus" layoutX="20.0" layoutY="206.0" prefWidth="150.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="206.0" />
+            <ComboBox fx:id="comboBoxStatus" layoutX="20.0" layoutY="206.0" prefWidth="150.0" promptText="Selecione Status" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="206.0" />
             <Button fx:id="btnRelatorio" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" onAction="#onBtnRelatorioAction" onMouseEntered="#mouseEntraRelatorio" onMouseExited="#mouseSaiRelatorio" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #0000CD;" text="Buscar Relatório" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="245.0">
                <font>
                   <Font name="System Bold" size="12.0" />

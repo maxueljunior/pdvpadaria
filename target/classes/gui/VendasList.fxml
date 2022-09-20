@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtIdProduto" layoutX="13.0" layoutY="36.0" onKeyPressed="#EnterIdProduto" prefHeight="27.0" prefWidth="172.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="35.0" />
+            <TextField fx:id="txtIdProduto" layoutX="13.0" layoutY="36.0" onKeyPressed="#EnterIdProduto" prefHeight="27.0" prefWidth="172.0" promptText="Insira o codigo e tecle ENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="35.0" />
             <Label layoutX="14.0" layoutY="73.0" prefHeight="27.0" prefWidth="197.0" text="DESCRIÇÃO PRODUTO" textFill="#fffbfe">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -72,7 +72,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtQuantidade" layoutX="184.0" layoutY="167.0" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="167.0" />
+            <TextField fx:id="txtQuantidade" layoutX="184.0" layoutY="167.0" promptText="Inserir quantidade.." AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="167.0" />
             <Button fx:id="btnPesquisar" layoutX="198.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnPesquisarAction" onMouseEntered="#mouseEntraPesquisar" onMouseExited="#mouseSaiPesquisar" prefHeight="25.0" prefWidth="161.0" style="-fx-background-radius: 0; -fx-background-color: #0000CD;" text="Pesquisar" textFill="WHITE" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="35.0">
                <font>
                   <Font name="System Bold" size="14.0" />
