@@ -27,6 +27,7 @@ import pdv.application.Program;
 import pdv.model.entities.Cliente;
 import pdv.model.entities.Item;
 import pdv.model.entities.Vendas;
+import pdv.model.entities.enums.VendaStatus;
 import pdv.model.services.ClienteService;
 import pdv.model.services.VendaItemService;
 import pdv.model.services.VendasService;
@@ -83,6 +84,12 @@ public class VendaFormController implements Initializable, DataChangeListener{
 		
 		v = service.findVendasById(numeroVendas);
 		v.setCliente(cliente);
+		
+		if(cliente == null) {
+			
+		}else {
+			v.setVendaStatus(VendaStatus.AGUARDANDO_PAGAMENTO);
+		}
 		
 		service.saveOrUpdate(v);
 		
