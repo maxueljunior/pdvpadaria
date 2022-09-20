@@ -83,6 +83,9 @@ public class ClientListController implements Initializable {
 			service.saveOrUpdate(c);
 			updateTableView();
 			tableViewCliente.refresh();
+			txtId.setText("");
+			txtNome.setText("");
+			txtTelefone.setText("");
 		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
 		} catch (RuntimeException e) {
