@@ -19,8 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -92,6 +90,10 @@ public class VendaFormController implements Initializable, DataChangeListener{
 		
 		onMenuItemVendas();
 		
+		Stage stage = (Stage) btnVendaSemEmissao.getScene().getWindow();
+		stage.close();
+		
+		
 	}
 	
 	private void onMenuItemVendas() {
@@ -126,7 +128,7 @@ public class VendaFormController implements Initializable, DataChangeListener{
 
 	@FXML
 	public void onBtnVendaComEmissaoAction() {
-		System.out.println("venda com emissão de nfc-e");
+		Alerts.showAlert("Information", "Venda com emissão da nota fiscal do consumindor ainda em desenvolvimento.",null, AlertType.INFORMATION);
 	}
 
 	@Override
