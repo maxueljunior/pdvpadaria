@@ -35,6 +35,7 @@
                     <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="About" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" />
               </menus>
             </MenuBar>
             <AnchorPane prefHeight="826.0" prefWidth="800.0">

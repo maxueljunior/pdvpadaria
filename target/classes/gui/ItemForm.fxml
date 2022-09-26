@@ -15,7 +15,7 @@
    <children>
       <GridPane layoutX="28.0" layoutY="35.0" prefHeight="220.0" prefWidth="560.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="87.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="87.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="229.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="189.0" />
         </columnConstraints>
@@ -27,19 +27,19 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Codigo Produto" textFill="WHITE">
+            <Label text="Codigo Produto:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label text="Nome Produto" textFill="WHITE" GridPane.rowIndex="1">
+            <Label text="Nome Produto:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label text="Quantidade" textFill="WHITE" GridPane.rowIndex="2">
+            <Label text="Quantidade:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Label text="Preço" textFill="WHITE" GridPane.rowIndex="3">
+            <Label text="Preço:" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
