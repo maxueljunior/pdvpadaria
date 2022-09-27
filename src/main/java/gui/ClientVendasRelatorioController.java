@@ -46,9 +46,11 @@ import javafx.util.Callback;
 import pdv.application.Program;
 import pdv.model.entities.Cliente;
 import pdv.model.entities.Item;
+import pdv.model.entities.VendaItem;
 import pdv.model.entities.Vendas;
 import pdv.model.entities.enums.VendaStatus;
 import pdv.model.services.ClienteService;
+import pdv.model.services.ItemService;
 import pdv.model.services.VendasService;
 
 public class ClientVendasRelatorioController implements Initializable, DataChangeListener {
