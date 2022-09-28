@@ -39,6 +39,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -99,59 +100,67 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 	private Button btnRelatorio;
 
 	@FXML
+	private Button btnAlteraStatus;
+
+	@FXML
 	private Button btnExcel;
 
 	private ObservableList<Vendas> obsList;
 
 	private ObservableList<VendaStatus> obsListStatus;
 
+	private Vendas vend;
+
 	public void setService(VendasService service) {
 		this.service = service;
 	}
-	
+
 	@FXML
 	public void mouseEntraPesquisar() {
-		btnPesquisar.setStyle("-fx-background-color: white;"
-				+"-fx-text-fill:#0000CD;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnPesquisar.setStyle("-fx-background-color: white;" + "-fx-text-fill:#0000CD;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
+
 	@FXML
 	public void mouseSaiPesquisar() {
-		btnPesquisar.setStyle("-fx-background-color: #0000CD;"
-				+"-fx-text-fill:white;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnPesquisar.setStyle("-fx-background-color: #0000CD;" + "-fx-text-fill:white;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
-	
+
 	@FXML
 	public void mouseEntraRelatorio() {
-		btnRelatorio.setStyle("-fx-background-color: white;"
-				+"-fx-text-fill:#0000CD;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnRelatorio.setStyle("-fx-background-color: white;" + "-fx-text-fill:#0000CD;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
+
 	@FXML
 	public void mouseSaiRelatorio() {
-		btnRelatorio.setStyle("-fx-background-color: #0000CD;"
-				+"-fx-text-fill:white;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnRelatorio.setStyle("-fx-background-color: #0000CD;" + "-fx-text-fill:white;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
-	
+
 	@FXML
 	public void mouseEntraExcel() {
-		btnExcel.setStyle("-fx-background-color: white;"
-				+"-fx-text-fill:#0000CD;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnExcel.setStyle("-fx-background-color: white;" + "-fx-text-fill:#0000CD;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
+
 	@FXML
 	public void mouseSaiExcel() {
-		btnExcel.setStyle("-fx-background-color: #0000CD;"
-				+"-fx-text-fill:white;"
-				+"-fx-font-size:12px;"
-				+"-fx-font-weight: bold");
+		btnExcel.setStyle("-fx-background-color: #0000CD;" + "-fx-text-fill:white;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
+	}
+
+	@FXML
+	public void mouseEntraStatus() {
+		btnAlteraStatus.setStyle("-fx-background-color: white;" + "-fx-text-fill:#0000CD;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
+	}
+
+	@FXML
+	public void mouseSaiStatus() {
+		btnAlteraStatus.setStyle("-fx-background-color: #0000CD;" + "-fx-text-fill:white;" + "-fx-font-size:12px;"
+				+ "-fx-font-weight: bold");
 	}
 
 	@FXML
@@ -159,6 +168,57 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 		Stage parentStage = Utils.currentStage(event);
 
 		createDialogForm("/gui/PesquisarClientVendaList.fxml", parentStage);
+	}
+
+	@FXML
+	public void onBtnAlteraStatusAction() {
+		try {
+
+			if (comboBoxStatus.getValue() == VendaStatus.CANCELADO) {
+				vend.setVendaStatus(VendaStatus.CANCELADO);
+			} else if (comboBoxStatus.getValue() == VendaStatus.AGUARDANDO_PAGAMENTO) {
+				vend.setVendaStatus(VendaStatus.AGUARDANDO_PAGAMENTO);
+			} else if (comboBoxStatus.getValue() == VendaStatus.PAGO) {
+				vend.setVendaStatus(VendaStatus.PAGO);
+			} else {
+				Alerts.showAlert("Erro a o executar alteração", null,
+						"Não há nenhum valor selecionado no Status da Venda para alteração!!", AlertType.ERROR);
+			}
+
+			service.saveOrUpdate(vend);
+			for (int i = 0; i < obsList.size(); i++) {
+				if (obsList.get(i).getId() == vend.getId()) {
+					obsList.get(i).setVendaStatus(vend.getVendaStatus());
+					tableViewVendas.setItems(obsList);
+					tableViewVendas.refresh();
+				}
+			}
+
+			comboBoxStatus.getSelectionModel().select(-1);
+			tableViewVendas.getSelectionModel().clearSelection();
+			vend = null;
+			btnAlteraStatus.setVisible(false);
+			cliente = null;
+			txtNomeCliente.setText("");
+			dataFinal.setValue(null);
+			dataInicial.setValue(null);
+			
+		} catch (NullPointerException e) {
+			Alerts.showAlert("Erro ao executar alteração", "Não há nenhuma venda selecionada", e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	public void onMouseClickedAction(MouseEvent e) {
+		int i = tableViewVendas.getSelectionModel().getSelectedIndex();
+
+		Vendas v = (Vendas) tableViewVendas.getItems().get(i);
+		
+		btnAlteraStatus.setVisible(true);
+		btnAlteraStatus.setText("Alterar Status Venda nº " + v.getId());
+
+		vend = v;
+
 	}
 
 	@FXML
@@ -189,21 +249,21 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 
 			for (Vendas lista : obsList) {
 				HSSFRow row = sheet.createRow(i);
-				
+
 				row.createCell(0).setCellValue(lista.getId());
-				
-				if(lista.getCliente() == null) {
+
+				if (lista.getCliente() == null) {
 					row.createCell(1).setCellValue("N/I");
-				}else {
+				} else {
 					row.createCell(1).setCellValue(lista.getCliente().getName());
 				}
-				
-				if(lista.getTotalVenda() == null) {
+
+				if (lista.getTotalVenda() == null) {
 					row.createCell(2).setCellValue("N/I");
-				}else {
+				} else {
 					row.createCell(2).setCellValue(lista.getTotalVenda());
 				}
-				
+
 				row.createCell(3).setCellValue(lista.getData().toString());
 				row.createCell(4).setCellValue(lista.getVendaStatus().toString());
 				i++;
@@ -211,13 +271,13 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 
 			try {
 
-				//FileOutputStream fileOut = new FileOutputStream("Relatorio.xls");
-				
+				// FileOutputStream fileOut = new FileOutputStream("Relatorio.xls");
+
 				File desktopDir = new File(System.getProperty("user.home"), "Desktop");
-				//System.out.println(desktopDir.getPath() + " " + desktopDir.exists());
-				
-				FileOutputStream fileOut =  new FileOutputStream(new File(desktopDir, "Relatorio.xls"));
-				
+				// System.out.println(desktopDir.getPath() + " " + desktopDir.exists());
+
+				FileOutputStream fileOut = new FileOutputStream(new File(desktopDir, "Relatorio.xls"));
+
 				try {
 					workbook.write(fileOut);
 					fileOut.close();
@@ -230,10 +290,13 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 
 			}
 		} catch (NullPointerException e) {
-			Alerts.showAlert("Relatório Vazio", "Relatório está vazio, sendo assim não é possivel gerar o excel", e.getMessage(), AlertType.ERROR);
+			Alerts.showAlert("Relatório Vazio", "Relatório está vazio, sendo assim não é possivel gerar o excel",
+					e.getMessage(), AlertType.ERROR);
 		}
-		
-		Alerts.showAlert("Sucesso ao transferir Relatório", "O Relatório foi gerado com sucesso e está na sua area de trabalho (Desktop)!!", null, AlertType.INFORMATION);
+
+		Alerts.showAlert("Sucesso ao transferir Relatório",
+				"O Relatório foi gerado com sucesso e está na sua area de trabalho (Desktop)!!", null,
+				AlertType.INFORMATION);
 
 	}
 
@@ -380,6 +443,7 @@ public class ClientVendasRelatorioController implements Initializable, DataChang
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
+		btnAlteraStatus.setVisible(false);
 	}
 
 	private void initializeNodes() {
